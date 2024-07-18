@@ -11,15 +11,15 @@ export class connect {
     #pass;
     #dbName;
 
-    // mongodb://mongo:OMEmmVczGqxpkuzHNMZUPpXPikXrVofI@monorail.proxy.rlwy.net:15184
+    // mongodb://mongo:nLwIuFObDkYKTCxxFNuQJanKJanylkKq@monorail.proxy.rlwy.net:28671
 
     constructor({ host, user, pass, port, cluster, dbName } = {
         host: "mongodb://",
         user: "mongo",
-        pass: "OMEmmVczGqxpkuzHNMZUPpXPikXrVofI",
-        port: 15184,
+        pass: "nLwIuFObDkYKTCxxFNuQJanKJanylkKq",
+        port: 28671,
         cluster: "monorail.proxy.rlwy.net",
-        dbName: "ligaBetplay"
+        dbName: "ligaBetPlay"
     }) {
         if (connect.instanceConnect) {
             return connect.instanceConnect;
