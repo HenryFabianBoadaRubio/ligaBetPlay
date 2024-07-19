@@ -13,23 +13,16 @@ export class connect {
 
     // mongodb://mongo:nLwIuFObDkYKTCxxFNuQJanKJanylkKq@monorail.proxy.rlwy.net:28671
 
-    constructor({ host, user, pass, port, cluster, dbName } = {
-        host: "mongodb://",
-        user: "mongo",
-        pass: "nLwIuFObDkYKTCxxFNuQJanKJanylkKq",
-        port: 28671,
-        cluster: "monorail.proxy.rlwy.net",
-        dbName: "ligaBetPlay"
-    }) {
+    constructor() {
         if (connect.instanceConnect) {
             return connect.instanceConnect;
         }
-        this.setHost = host;
-        this.user = user;
-        this.setPass = pass;
-        this.port = port;
-        this.cluster = cluster;
-        this.setDbName = dbName;
+        this.setHost = process.env.MONGO_HOST;
+        this.user = process.env.MONGO_USER;
+        this.setPass = process.env.MONGO_PWD;
+        this.port = process.env.MONGO_PORT;
+        this.cluster = process.env.MONGO_CLUSTER;
+        this.setDbName = process.env.MONGO_DB;
         this.#open();
         connect.instanceConnect = this;
     }

@@ -8,7 +8,7 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch main.js"
+    "dev": "node --watch --env-file=.env main.js"
   },
   "keywords": [],
   "author": "",
