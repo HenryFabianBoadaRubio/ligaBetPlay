@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { connect } from "../../helpers/db/connect.js";
 
 export class convocatoria extends connect {
@@ -23,4 +24,7 @@ export class convocatoria extends connect {
         await this.conexion.close();
         return res;
     }
+
+
+   
 }
