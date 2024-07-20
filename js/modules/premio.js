@@ -1,20 +1,20 @@
 import { connect } from "../../helpers/db/connect.js";
 
-export class practica extends connect {
-    static instancePractica;
+export class premio extends connect {
+    static instancePremio;
     db;
     collection;
     constructor() {
-        if (practica.instancePractica) {
-            return practica.instancePractica;
+        if (premio.instancePremio) {
+            return premio.instancePremio;
         }
         super();
         this.db = this.conexion.db(this.getDbName);
-        this.collection = this.db.collection('test');
-        practica.instancePractica = this;
+        this.collection = this.db.collection('premio');
+        premio.instancePremio = this;
     }
     destructor(){
-        practica.instancePractica = undefined;
+        premio.instancePremio = undefined;
         connect.instanceConnect = undefined;
     }
     async getAllTest() {
