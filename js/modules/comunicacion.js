@@ -23,4 +23,19 @@ export class comunicacion extends connect {
         await this.conexion.close();
         return res;
     }
+
+    async registerNews({titulo, contenido, fechaPublicacion, destinatarios}) {
+        let res;
+        try {
+            
+           
+            });
+            return {
+                message: "Noticia registrada correctamente",
+                data: res.ops
+            };
+        } catch (error) {
+            return { error: "Error", message: error.message, details: error.errInfo };
+        }
+    }
 }
