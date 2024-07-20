@@ -109,3 +109,123 @@ const data={
 console.log(await objPartido.updateGame("669c2a22d7decd9de823f786",data));
 ```
 
+
+
+
+
+## Caso de uso 6: Gestión de Noticias y Comunicados
+
+### registerNews():
+
+Metodo para la insercion de una nueva noticia a la base de datos.
+
+#### Parámetros
+
+- `params `(Object): Los parámetros para el elemento de noticias.
+
+- `_id` (string): El identificador único para el elemento de noticias.
+- `periodista` (string): El autor del elemento de noticias.
+- `tipo` (string): El tipo de noticia.` 
+- `titulo` (string): El título de la noticia.` 
+- `contenido` (string): El contenido de la noticia.` 
+- `fechaPublicacion` (string): La fecha de publicación de la noticia.
+- `destinatarios` (Array): Los destinatarios de la noticia.
+
+#### Retorno
+
+La función retorna un objeto con un mensaje de éxito o error, y los datos de la noticia registrada:
+
+- `error` (Object): Contendrá "Not valid" si la noticia ya existe.
+- `message` (Object): Mensaje de éxito o error.
+- `data` (Object): Los datos de la noticia registrada.
+- `error` (Object): Contendrá "Error" si se produce un error durante el registro.
+- `message` (Object): Mensaje de error.
+- `details` (Object): Detalles del error.
+
+```javascript
+let objComunicacion = new comunicacion();
+console.log(await objComunicacion.registerNews(
+    {
+        titulo: "Noticia de Liga BetPlay Nuevos Filtrados confirmados",
+        contenido: "Por Bajo Rendimiento Equipos Eliminados",
+        fechaPublicacion:"2024-10-20T8:00:00.000Z",
+        destinatarios:[
+            "medios",
+            "television"
+        ],
+        periodista:"Henry Boada",
+        tipo: "noticia"
+    }
+));
+
+```
+
+
+
+### deleteNews():
+
+Metodo para la eliminacion de una noticia ya existente de la base de datos.
+
+#### Parámetros
+
+- `id` (string): El identificador único de la noticia a eliminar.
+
+#### Retorno
+
+La función retorna un objeto con un mensaje de éxito o error, y los detalles de la operación:
+
+- `error` (Object): Contendrá "Error" si se produce un error durante la eliminación.
+
+- `message` (Object): Mensaje de éxito o error.
+
+- `data` (Object): Los detalles de la operación de eliminación.
+
+- `details` (Object): Detalles del error si se produce un error.
+
+  ```javascript
+  let objComunicacion = new comunicacion();
+  console.log(await objComunicacion.deleteNews("669c59e3857d1128052a18ea"));
+  
+  ```
+
+  
+
+### updateNews():
+
+Metodo para la actualizacion de una noticia ya existente en la base de datos.
+
+#### Parámetros
+
+- `id` (string): El identificador único de la noticia a actualizar.
+- `data` (Object): Los datos a actualizar para la noticia.
+
+#### Retorno
+
+La función retorna un objeto con un mensaje de éxito o error, y los detalles de la operación:
+
+- `error` (Object): Contendrá "Error" si se produce un error durante la actualización.
+
+- `message` (Object): Mensaje de éxito o error.
+
+- `data` (Object): Los detalles de la operación de actualización.
+
+- `details` (Object): Detalles del error si se produce un error.
+
+  ```javascript
+  let objComunicacion = new comunicacion();
+  console.log(await objComunicacion.updateNews("6699937456837c8431e99da5",
+     {
+       titulo: "Noticia de Liga  ACTUALIZADA",
+       contenido: "Por Bajo Rendimiento Equipos Eliminados ACTUALIZADO",
+       fechaPublicacion:"2024-10-20T8:00:00.000Z",
+       destinatarios:[
+           "medios",
+           "television"
+       ],
+       periodista:"Miguel castro ACTUALIZADO",
+       tipo: "noticia"
+     }))
+  
+  ```
+
+  
