@@ -158,15 +158,44 @@ import { ObjectId } from "mongodb";
 // console.log(await objResultado.getAllTest());
 // objResultado.destructor();
 
+
+
+
+/////////················································································································///////////
+/////////················································CASO DE USO 3 PARTIDO···········································///////////
+
 let objPartido = new partido();
-console.log(await objPartido.registerGame(
-    {
-        equipolocal:"669993f156837c8431e99e0d",
-        equipoVisitante:"669993f156837c8431e99e0c",
-        fecha_y_hora:"2024-07-25T10:00:00.000Z",
-        id_estadio:"669993fb56837c8431e99e20",
-        tipo:"torneo"
-    }
-));
+// test para insercion de partido 
+// Estos datos son opcionales ya que se pueden cambiar para generar un tipo de partido diferente.
+// console.log(await objPartido.registerGame(
+//     {
+//         equipolocal:"669993f156837c8431e99e0d",
+//         equipoVisitante:"669993f156837c8431e99e0c",
+//         fecha_y_hora:"2024-07-25T10:00:00.000Z",
+//         id_estadio:"669993fb56837c8431e99e20",
+//         tipo:"torneo"
+//     }
+// ));
+
+
+//test para eliminacion de partido ya existente.
+// console.log(await objPartido.deleteGame("669c2a3bc00efe8e94bea5cd"));
+
+
+//test para actualizar partido y existente.
+// en la actualizacion no es necesario cambiar todos los campos. simplemente se pueden seleccionar los que desees.
+const data={
+    
+    equipolocal:new ObjectId("669993f156837c8431e99e0d"),
+    equipoVisitante:new ObjectId("669993f156837c8431e99e0c"),
+    fecha_y_hora:new Date("2024-08-25T11:00:00.000Z"),
+    id_estadio:new ObjectId("669993fb56837c8431e99e20"),
+    tipo:"ya tu sabe ya tu sabe"
+}
+
+console.log(await objPartido.updateGame("669c2a22d7decd9de823f786",data));
 objPartido.destructor();
+
+/////////··············································FIN CASO DE USO 3 ······················································///////////
+/////////················································································································///////////
 
