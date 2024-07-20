@@ -110,9 +110,38 @@ import { ObjectId } from "mongodb";
 // console.log(await objArbitro.getAllTest());
 // objArbitro.destructor();
 
-// let objComunicacion = new comunicacion();
-// console.log(await objComunicacion.getAllTest());
-// objComunicacion.destructor();
+
+
+
+/////////················································································································///////////
+/////////················································CASO DE USO 6 COMUNICACION······································///////////
+
+let objComunicacion = new comunicacion();
+//La noticia valida por titulo en ese caso . si sale error es porque ya existe en ese caso debemos cambiar el nombre de la noticia.
+//test para el caso de uso 6 , datos para ingresar la nueva noticia.
+console.log(await objComunicacion.registerNews(
+    {
+        titulo: "Noticia de Liga BetPlay Nuevos Filtrados confirmados",
+        contenido: "Por Bajo Rendimiento Equipos Eliminados",
+        fechaPublicacion:"2024-10-20T8:00:00.000Z",
+        destinatarios:[
+            "medios",
+            "television"
+        ],
+        periodista:"Henry Boada",
+        tipo: "noticia"
+    }
+));
+objComunicacion.destructor();
+
+
+
+
+/////////··············································FIN CASO DE USO 6 ······················································///////////
+/////////················································································································///////////
+
+
+
 
 // let objEquipo = new equipo();
 // console.log(await objEquipo.getAllTest());
@@ -184,17 +213,17 @@ let objPartido = new partido();
 
 //test para actualizar partido y existente.
 // en la actualizacion no es necesario cambiar todos los campos. simplemente se pueden seleccionar los que desees.
-const data={
+// const data={
     
-    equipolocal:new ObjectId("669993f156837c8431e99e0d"),
-    equipoVisitante:new ObjectId("669993f156837c8431e99e0c"),
-    fecha_y_hora:new Date("2024-08-25T11:00:00.000Z"),
-    id_estadio:new ObjectId("669993fb56837c8431e99e20"),
-    tipo:"ya tu sabe ya tu sabe"
-}
+//     equipolocal:new ObjectId("669993f156837c8431e99e0d"),
+//     equipoVisitante:new ObjectId("669993f156837c8431e99e0c"),
+//     fecha_y_hora:new Date("2024-08-25T11:00:00.000Z"),
+//     id_estadio:new ObjectId("669993fb56837c8431e99e20"),
+//     tipo:"ya tu sabe ya tu sabe"
+// }
 
-console.log(await objPartido.updateGame("669c2a22d7decd9de823f786",data));
-objPartido.destructor();
+// console.log(await objPartido.updateGame("669c2a22d7decd9de823f786",data));
+// objPartido.destructor();
 
 /////////··············································FIN CASO DE USO 3 ······················································///////////
 /////////················································································································///////////
