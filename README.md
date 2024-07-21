@@ -339,3 +339,100 @@ La función retorna una promesa que resuelve con un objeto que contiene:
   ```
 
   
+
+## Caso de uso 20: Gestión de Equipamiento
+
+### registerEquipment():
+
+Metodo para la insercion de un nuevo equipamiento en la base de datos.
+
+#### Parámetros
+
+- `params` (Object): Los parámetros necesarios para registrar el equipamiento.
+- `id_equipo` (string): El ID del equipo.
+- `tipo` (string): El tipo del equipamiento.
+- `cantidad` (number): La cantidad de equipamientos a registrar.
+- `fecha_adquisicion` (string): La fecha de adquisición del equipamiento en formato AA-MM-DD.
+
+#### Retorno
+
+La función retorna un objeto con un mensaje y datos en caso de éxito o error:
+
+- `error` (Object): Indica si hubo un error durante el proceso.
+- `message` (Object): Mensaje descriptivo del resultado del proceso.
+- `data` (Object): Datos relacionados con el resultado del proceso (en caso de éxito).
+- `details` (Object): Detalles adicionales del error (en caso de error).
+
+```javascript
+let objEquipamiento = new equipamiento();
+console.log(await objEquipamiento.registerEquipment({
+  id_equipo: new ObjectId("669993f156837c8431e99dfd"),
+  tipo: "Tobilleras",
+  cantidad: 20,
+  fecha_adquisicion:"2024-10-25"
+}));
+
+```
+
+
+
+### deleteEquipment():
+
+Metodo para la eliminacion de un equipamiento ya existente de la base de datos.
+
+#### Parámetros
+
+- `params` (Object): Parámetros necesarios para eliminar el equipamiento.
+- `id_equipo` (string): El ID del equipo.
+- `tipo` (string): El tipo del equipamiento.
+
+#### Retorno
+
+La función retorna un objeto con un mensaje y datos en caso de éxito o error:
+
+- `error` (Object): Indica si hubo un error durante el proceso.
+- `message` (Object): Mensaje descriptivo del resultado del proceso.
+- `data` (Object): Datos relacionados con el resultado del proceso (en caso de éxito).
+- `details` (Object): Detalles adicionales del error (en caso de error).
+
+```javascript
+let objEquipamiento = new equipamiento();
+console.log(await objEquipamiento.deleteEquipment({
+id_equipo:"669993f156837c8431e99dfa",
+tipo:"Tobilleras"
+}));
+```
+
+
+
+### updateEquipment():
+
+Metodo para la actualizacion de un equipamiento ya existente en la base de datos.
+
+#### Parámetros
+
+- `params`(Object): Parámetros necesarios para actualizar el equipamiento.
+- `id_equipo` (string): El ID del equipo.
+- `tipo` (string): El tipo del equipamiento.
+- `cantidad` (number): La nueva cantidad de equipamientos.
+- `fecha_adquisicion` (string): La nueva fecha de adquisición del equipamiento en formato AA-MM-DD.
+
+#### Retorno
+
+La función retorna un objeto con un mensaje y datos en caso de éxito o error:
+
+- `error` (Object): Indica si hubo un error durante el proceso.
+- `message` (Object): Mensaje descriptivo del resultado del proceso.
+- `data` (Object): Datos relacionados con el resultado del proceso (en caso de éxito).
+- `details` (Object): Detalles adicionales del error (en caso de error).
+
+```javascript
+let objEquipamiento = new equipamiento();
+console.log(await objEquipamiento.updateEquipment({
+      id_equipo: new ObjectId("669993f156837c8431e99dfa"),
+      tipo: "Yersys",
+      cantidad: 80,
+      Fecha_adquisicion:"2024-11-18",
+    }))
+```
+
