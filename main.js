@@ -73,7 +73,7 @@ import { ObjectId } from "mongodb";
 
 /////////················································································································///////////
 /////////················································CASO DE USO 20 EQUIPAMIENTO······································///////////
-let objEquipamiento = new equipamiento();
+// let objEquipamiento = new equipamiento();
 
 //Test para la insercion tener presente la existencia del equipo adicional revisar el tipo de equipamiento que ingresaremos al detectar 
 //duplicidad saldra error y la fecha debe ir en el formato AA-MM-DD
@@ -95,21 +95,59 @@ let objEquipamiento = new equipamiento();
 
 
 //Test para la actualización de un partido ya existente.
-// Tener presente que se debe ingresar el id del equipo al cual colocaremos el equipamiento.
-    console.log(await objEquipamiento.updateEquipment({
-      id_equipo: new ObjectId("669993f156837c8431e99dfa"),
-      tipo: "Yersys",
-      cantidad: 80,
-      Fecha_adquisicion:"2024-11-18",
-    }))
+// // Tener presente que se debe ingresar el id del equipo al cual colocaremos el equipamiento.
+//     console.log(await objEquipamiento.updateEquipment({
+//       id_equipo: new ObjectId("669993f156837c8431e99dfa"),
+//       tipo: "Yersys",
+//       cantidad: 80,
+//       Fecha_adquisicion:"2024-11-18",
+//     }))
 
 
 /////////··············································FIN CASO DE USO 20 ······················································///////////
 /////////················································································································///////////
 
-// let objPremio = new premio();
-// console.log(await objPremio.getAllTest());
-// objPremio.destructor();
+
+
+
+/////////················································································································///////////
+/////////················································CASO DE USO 22 PREMIO······································///////////
+let objPremio = new premio();
+//test para insercion de un nuevo premio . tener presente el momento de ingresar se hace teniendo en cuenta
+//el id del jugador al cual se le otorgara el reconocimiento, si el jugador ya posee este mismo premio saldra error. adicional el formato de la fecha debe ser AA-MM-DD
+// console.log(await objPremio.registerPrize(
+//   {
+//     nombre: "Medalla de oro",
+//     descripcion:"Reconocimiento por mejor jugador del torneo brindado por henry",
+//     fecha: "2024-01-12",
+//     id_jugador:"6699942656837c8431e99e60"
+//   }
+// ));
+
+
+
+//test para eliminar un premio ya existente. 
+// console.log(await objPremio.deletePrize("6699947156837c8431e99ebe"))
+
+
+//test para actualizar el premio ya existente
+//tener presente ingresar un id de premio ya existente o sino dara error al igual que con el jugador.
+console.log(await objPremio.updatePrize("6699947856837c8431e99ed1",{
+  nombre: "Medalla de diamante",
+  descripcion:"Reconocimiento por mejor jugador del torneo brindado por henry",
+  fecha:"2024-01-12",
+  id_jugador:new ObjectId("6699942656837c8431e99e60")
+}));
+
+
+
+
+
+objPremio.destructor();
+
+
+/////////··············································FIN CASO DE USO 22 ······················································///////////
+/////////················································································································///////////
 
 // let objEstadisticaJugador = new estadistica_jugador();
 // console.log(await objEstadisticaJugador.getAllTest());

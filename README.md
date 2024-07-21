@@ -436,3 +436,102 @@ console.log(await objEquipamiento.updateEquipment({
     }))
 ```
 
+
+
+## Caso de uso 22: Gestión de Premios y Reconocimientos
+
+### registerPrize():
+
+Metodo para registrar un nuevo premio en la base de datos.
+
+#### Parámetros
+
+- `params` (Object): Los parámetros para registrar un premio.
+- `nombre` (string): El nombre del premio.
+- `descripcion` (string): La descripción del premio.
+- `fecha` (string): La fecha del premio en formato 'AA-MM-DD'.
+- `id_jugador` (string): El identificador del jugador al que se le otorga el premio.
+
+#### Retorno
+
+La función retorna una promesa que resuelve con un objeto que contiene:
+
+- `message` (Object): El mensaje de éxito o error.
+- `data` (Object): Los datos del premio registrado (en caso de éxito).
+- `error` (Object): Contendrá el error (en caso de fallo).
+- `details` (Object): Detalles adicionales del error (opcional).
+
+```javascript
+let objPremio = new premio();
+console.log(await objPremio.registerPrize(
+  {
+    nombre: "Medalla de oro",
+    descripcion:"Reconocimiento por mejor jugador del torneo brindado por henry",
+    fecha: "2024-01-12",
+    id_jugador:"6699942656837c8431e99e60"
+  }
+));
+```
+
+
+
+### deletePrize():
+
+Metodo para la eliminacion de un premio ya existente de la base de datos.
+
+#### Parámetros
+
+- `id` (string): El identificador del premio que se quiere eliminar.
+
+#### Retorno
+
+La función retorna una promesa que resuelve con un objeto que contiene:
+
+- `message` (Object): El mensaje de éxito o error.
+
+- `data` (Object): Los datos de la operación de eliminación (en caso de éxito).
+
+- `error` (Object): Contendrá el error (en caso de fallo).
+
+- `details` (Object): Detalles adicionales del error (opcional).
+
+  ```javascript
+  let objPremio = new premio();
+  console.log(await objPremio.deletePrize("6699947156837c8431e99ebe"))
+  
+  ```
+
+
+
+### updatePrize():
+
+Metodo para la actualizacion de un premio ya existente en la base de datos.
+
+#### Parámetros
+
+- `id` (string): El identificador del premio que se quiere actualizar.
+- `data`(Object): Los datos para actualizar el premio.
+- `nombre` (string, opcional): El nuevo nombre del premio.
+- `descripcion` (string, opcional): La nueva descripción del premio.
+- `fecha` (string, opcional): La nueva fecha del premio en formato 'AA-MM-DD'.
+- `id_jugador` (string, opcional): El nuevo identificador del jugador al que se le otorga el premio.
+
+#### Retorno
+
+La función retorna una promesa que resuelve con un objeto que contiene:
+
+- `message` (Object): El mensaje de éxito o error.
+- `data` (Object): Los datos de la operación de actualización (en caso de éxito).
+- `error` (Object): Contendrá el error (en caso de fallo).
+- `details` (Object): Detalles adicionales del error (opcional).
+
+```javascript
+let objPremio = new premio();
+console.log(await objPremio.updatePrize("6699947856837c8431e99ed1",{
+  nombre: "Medalla de diamante",
+  descripcion:"Reconocimiento por mejor jugador del torneo brindado por henry",
+  fecha:"2024-01-12",
+  id_jugador:new ObjectId("6699942656837c8431e99e60")
+}));
+```
+
