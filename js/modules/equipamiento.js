@@ -74,4 +74,40 @@ export class equipamiento extends connect {
             
         }
     }
+
+    async deleteEquipment({id_equipo, tipo}){
+        let res;
+        try {
+            //verificar la existencia del equipo.
+            const equipoExist=await this.db.collection('equipo').findOne({_id:new ObjectId(id_equipo)})
+            if(!equipoExist){
+                return{
+                    error: "Not found",
+                    message: "El equipo no existe"
+                }
+            }
+
+            //verificar la existencia del equipamiento.
+            const equipamientoExist=await this.db.collection('equipamiento').findOne({id_equipo:new ObjectId(id_equipo), tipo: tipo})
+            if(!equipamientoExist){
+                return{
+                    error: "Not found",
+                    message: "El equipamiento no existe para el equipo"
+                }
+            }
+
+            //eliminar el equipamiento.
+            res= await this.collection.deleteOne({id_equipo:new ObjectId(id_equipo), tipo: tipo});
+            return {
+                message:"equipamiento eliminado correctamente",
+                data: res
+             }   
+        } catch (error) {
+            console.log(error);
+            
+            return { error: "Error", message: error.message,details: error.errInfo};
+            
+        }
+    }
 }
+

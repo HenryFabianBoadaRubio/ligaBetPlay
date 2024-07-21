@@ -74,11 +74,22 @@ import { ObjectId } from "mongodb";
 /////////················································································································///////////
 /////////················································CASO DE USO 20 EQUIPAMIENTO······································///////////
 let objEquipamiento = new equipamiento();
-console.log(await objEquipamiento.registerEquipment({
-  id_equipo: new ObjectId("669993f156837c8431e99dfd"),
-  tipo: "Tobilleras",
-  cantidad: 20,
-  fecha_adquisicion:"2024-10-25"
+
+//Test para la insercion tener presente la existencia del equipo adicional revisar el tipo de equipamiento que ingresaremos al detectar 
+//duplicidad saldra error y la fecha debe ir en el formato AA-MM-DD
+// console.log(await objEquipamiento.registerEquipment({
+//   id_equipo: new ObjectId("669993f156837c8431e99dfd"),
+//   tipo: "Tobilleras",
+//   cantidad: 20,
+//   fecha_adquisicion:"2024-10-25"
+// }));
+
+
+
+//test para eliminacion de partido ya existente.
+console.log(await objEquipamiento.deleteEquipment({
+  id_equipo:"669993f156837c8431e99dfa",
+  tipo:"Tobilleras"
 }));
 objEquipamiento.destructor();
 
