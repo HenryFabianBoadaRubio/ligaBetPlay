@@ -70,9 +70,21 @@ import { ObjectId } from "mongodb";
 // console.log(await objRol.getAllTest());
 // objRol.destructor();
 
-// let objEquipamiento = new equipamiento();
-// console.log(await objEquipamiento.getAllTest());
-// objEquipamiento.destructor();
+
+/////////················································································································///////////
+/////////················································CASO DE USO 20 EQUIPAMIENTO······································///////////
+let objEquipamiento = new equipamiento();
+console.log(await objEquipamiento.registerEquipment({
+  id_equipo: new ObjectId("669993f156837c8431e99dfd"),
+  tipo: "Tobilleras",
+  cantidad: 20,
+  fecha_adquisicion:"2024-10-25"
+}));
+objEquipamiento.destructor();
+
+
+/////////··············································FIN CASO DE USO 20 ······················································///////////
+/////////················································································································///////////
 
 // let objPremio = new premio();
 // console.log(await objPremio.getAllTest());
@@ -184,7 +196,7 @@ import { ObjectId } from "mongodb";
 
 /////////················································································································///////////
 /////////················································CASO DE USO 7 ENTRENADOR······································///////////
-let objEntrenador = new entrenador();
+// let objEntrenador = new entrenador();
 //test para insercion de un nuevo entrenador tener en cuenta que se debe ingresar el id del equipo al cual va a ser ingresado
 // console.log(await objEntrenador.registerCoach(
 //   {
@@ -206,19 +218,19 @@ let objEntrenador = new entrenador();
 //test para actualizar partido ya existente.
 // al momento de ingresa la experiencia tener en cuenta que debe haber 15 años de diferencia
 // entre experiencia y edad.
- console.log(await objEntrenador.updateCoach("669993b156837c8431e99dd0",
-   {
-     nombre:"Mariana traslaviña ACTUALIZADA",
-     edad:30,
-     nacionalidad:"china ACTUALIZADA",
-     id_equipo:new ObjectId("669993f156837c8431e99dfc"),
-     experiencia: 14
+//  console.log(await objEntrenador.updateCoach("669993b156837c8431e99dd0",
+//    {
+//      nombre:"Mariana traslaviña ACTUALIZADA",
+//      edad:30,
+//      nacionalidad:"china ACTUALIZADA",
+//      id_equipo:new ObjectId("669993f156837c8431e99dfc"),
+//      experiencia: 14
 
-   }))
+//    }))
 
 
 
-objEntrenador.destructor();
+// objEntrenador.destructor();
 
 
 /////////··············································FIN CASO DE USO 7 ······················································///////////

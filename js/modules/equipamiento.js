@@ -1,4 +1,5 @@
 import { connect } from "../../helpers/db/connect.js";
+import { ObjectId } from "mongodb";
 
 export class equipamiento extends connect {
     static instanceEquipamiento;
@@ -35,16 +36,41 @@ export class equipamiento extends connect {
                     message: "El equipo no existe"
                 }
             }
+             
+            //validar el formato de la fecha que vamos a ingresar. cumpliendo AA-MM-DD
+            const regex = /^\d{4}-\d{2}-\d{2}$/;
+            if (!regex.test(fecha_adquisicion)) {
+                return {
+                    error: "Not valid",
+                    message: "Formato de fecha incorrecto, debe ser AA-MM-DD"
+                };
+            }
 
-
+            //verificar si el equipamiento ya existe para el equipo.
+            const equipamientoExist=await this.db.collection('equipamiento').findOne({id_equipo:new ObjectId(id_equipo), tipo: tipo})
+            if(equipamientoExist){
+                return{
+                    error: "Not valid",
+                    message: "El equipamiento ya existe para el equipo"
+                }
+            }
             //registrar el equipamiento.
-            const nuevoEquipamiento= {
+            let nuevoEquipamiento= {
                 id_equipo: new ObjectId(id_equipo),
                 tipo: tipo,
                 cantidad: cantidad,
                 fecha_adquisicion: new Date(fecha_adquisicion)
             }
+
+            //registrar el equipamiento.
+            res= await this.collection.insertOne(nuevoEquipamiento);
+            return {
+                message: "Equipamiento registrado correctamente",
+                data: res.ops
+            };
+
         } catch (error) {
+            return { error: "Error", message: error.message,details: error.errInfo};
             
         }
     }
