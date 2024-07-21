@@ -1,4 +1,5 @@
 import { connect } from "../../helpers/db/connect.js";
+import { ObjectId } from "mongodb";
 
 export class comunicacion extends connect {
     static instanceComunicacion;
@@ -72,4 +73,56 @@ export class comunicacion extends connect {
             return { error: "Error", message: error.message, details: error.errInfo };
         }
     }
+
+
+        /**
+     * Elimina una noticia existente de la base de datos.
+     *
+     * @param {string} id - El identificador único de la noticia a eliminar.
+     *
+     * @returns {Object} - Un objeto con un mensaje de éxito o error, y los detalles de la operación.
+     * @returns {Object.error} - "Error" si se produce un error durante la eliminación.
+     * @returns {Object.message} - Mensaje de éxito o error.
+     * @returns {Object.data} - Los detalles de la operación de eliminación.
+     * @returns {Object.details} - Detalles del error si se produce un error.
+     */
+    async deleteNews(id){
+        let res;
+        try {
+            res= await this.collection.deleteOne({_id: new ObjectId(id)});
+            return {
+                message: "Noticia eliminada correctamente",
+                data: res
+            };
+        } catch (error) {
+            return { error: "Error", message: error.message, details: error.errInfo};
+        }
+    }
+
+    
+        /**
+     * Actualiza una noticia existente en la base de datos.
+     *
+     * @param {string} id - El identificador único de la noticia a actualizar.
+     * @param {Object} data - Los datos a actualizar para la noticia.
+     *
+     * @returns {Object} - Un objeto con un mensaje de éxito o error, y los detalles de la operación.
+     * @returns {Object.error} - "Error" si se produce un error durante la actualización.
+     * @returns {Object.message} - Mensaje de éxito o error.
+     * @returns {Object.data} - Los detalles de la operación de actualización.
+     * @returns {Object.details} - Detalles del error si se produce un error.
+     */
+    async updateNews(id,data){
+        let res;
+        try {
+            res= await this.collection.updateOne({_id: new ObjectId(id)},{$set:data});
+            return {
+                message: "Noticia actualizada correctamente",
+                data: res
+            };
+        } catch (error) {
+            return { error: "Error", message: error.message, details: error.errInfo};
+        }º
+    }
+
 }

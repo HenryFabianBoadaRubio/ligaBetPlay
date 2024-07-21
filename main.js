@@ -119,19 +119,43 @@ import { ObjectId } from "mongodb";
 let objComunicacion = new comunicacion();
 //La noticia valida por titulo en ese caso . si sale error es porque ya existe en ese caso debemos cambiar el nombre de la noticia.
 //test para el caso de uso 6 , datos para ingresar la nueva noticia.
-console.log(await objComunicacion.registerNews(
-    {
-        titulo: "Noticia de Liga BetPlay Nuevos Filtrados confirmados",
-        contenido: "Por Bajo Rendimiento Equipos Eliminados",
-        fechaPublicacion:"2024-10-20T8:00:00.000Z",
-        destinatarios:[
-            "medios",
-            "television"
-        ],
-        periodista:"Henry Boada",
-        tipo: "noticia"
-    }
-));
+
+// console.log(await objComunicacion.registerNews(
+//     {
+//         titulo: "Noticia de Liga BetPlay Nuevos Filtrados confirmados",
+//         contenido: "Por Bajo Rendimiento Equipos Eliminados",
+//         fechaPublicacion:"2024-10-20T8:00:00.000Z",
+//         destinatarios:[
+//             "medios",
+//             "television"
+//         ],
+//         periodista:"Henry Boada",
+//         tipo: "noticia"
+//     }
+// ));
+
+
+//Test para eliminacion de noticia ya existe.
+//basado en el id ingresado busca en la data y elimina la noticia 
+// console.log(await objComunicacion.deleteNews("669c59e3857d1128052a18ea"));
+
+
+//Test para actualizar noticia ya existe.
+// en la data podemos colcoar los datos que deseamos ingresar para la actualizacion. no son requeridos todos los campos pero es opcional.
+ console.log(await objComunicacion.updateNews("6699937456837c8431e99da5",
+   {
+     titulo: "Noticia de Liga  ACTUALIZADA",
+     contenido: "Por Bajo Rendimiento Equipos Eliminados ACTUALIZADO",
+     fechaPublicacion:"2024-10-20T8:00:00.000Z",
+     destinatarios:[
+         "medios",
+         "television"
+     ],
+     periodista:"Miguel castro ACTUALIZADO",
+     tipo: "noticia"
+   }))
+
+
 objComunicacion.destructor();
 
 
