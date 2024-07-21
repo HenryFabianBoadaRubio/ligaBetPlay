@@ -229,3 +229,113 @@ La función retorna un objeto con un mensaje de éxito o error, y los detalles d
   ```
 
   
+
+## Caso de uso 7: Gestión de Entrenadores
+
+### registerCoach():
+
+Metodo para la insercion de un nuevo entrenador a la base de datos.
+
+#### Parámetros
+
+- `params `(Object): Los parámetros para registrar un entrenador.
+- `nombre` (string): El nombre del entrenador.` 
+- `edad` (number): La edad del entrenador.
+- `nacionalidad` (string): La nacionalidad del entrenador.` 
+- `id_equipo` (string): El identificador del equipo al que pertenece el entrenador.
+- `experiencia` (number): La experiencia del entrenador en años.
+
+#### Retorno
+
+La función retorna una promesa que resuelve con un objeto que contiene:
+
+- `message` (Object): Un mensaje de éxito o error.
+- `id` (string): El identificador del entrenador registrado (solo en caso de éxito).
+- `error` (Object): Contendrá "Error" si se produce un error durante el registro.
+- `details` (Object): Detalles del error (opcional).
+
+```javascript
+let objEntrenador = new entrenador();
+console.log(await objEntrenador.registerCoach(
+  {
+    nombre:"Mariana traslaviña",
+    edad:30,
+    nacionalidad:"china",
+    id_equipo:new ObjectId("669993f156837c8431e99dfc"),
+    experiencia: 20
+
+
+  }
+));
+```
+
+
+
+### deleteCoach():
+
+Metodo para la eliminacion de un entrenador existente de la base de datos.
+
+#### Parámetros
+
+- `id` (string): El identificador del entrenador a eliminar.
+
+#### Retorno
+
+La función retorna una promesa que resuelve con un objeto que contiene:
+
+- `message` (Object): Un mensaje de éxito o error.
+
+- `data` (Object): Los detalles de la operación de eliminación (solo en caso de éxito).
+
+- `error` (Object): Contendrá "Error" si se produce un error durante la eliminación.
+
+- `details` (Object): Detalles del error (opcional).
+
+  ```javascript
+  let objEntrenador = new entrenador();
+  console.log(await objEntrenador.deleteCoach("669993b156837c8431e99dd1"));
+  
+  ```
+
+  
+
+### updateCoach():
+
+Metodo para la actualizacion de un entrenador ya existente en la base de datos.
+
+#### Parámetros
+
+- `id` (string): El identificador del entrenador a actualizar.
+- data(Object): Los datos para actualizar al entrenador.
+- `nombre` (string): El nuevo nombre del entrenador.
+- `edad` (number): La nueva edad del entrenador.
+- `nacionalidad` (string): La nueva nacionalidad del entrenador.
+- `id_equipo` (string): El nuevo identificador del equipo al que pertenece el entrenador.
+- `experiencia` (number): La nueva experiencia del entrenador en años.
+
+#### Retorno
+
+La función retorna una promesa que resuelve con un objeto que contiene:
+
+- `message` (Object): Un mensaje de éxito o error.
+
+- `data` (Object): Los detalles de la operación de actualización (solo en caso de éxito).
+
+- `error` (Object): Contendrá "Error" si se produce un error durante la actualización.
+
+- `details` (Object): Detalles del error (opcional).
+
+  ```javascript
+  let objEntrenador = new entrenador();
+  console.log(await objEntrenador.updateCoach("669993b156837c8431e99dd0",
+     {
+       nombre:"Mariana traslaviña ACTUALIZADA",
+       edad:30,
+       nacionalidad:"china ACTUALIZADA",
+       id_equipo:new ObjectId("669993f156837c8431e99dfc"),
+       experiencia: 14
+  
+     }))
+  ```
+
+  
