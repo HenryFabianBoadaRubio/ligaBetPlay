@@ -185,17 +185,39 @@ import { ObjectId } from "mongodb";
 /////////················································································································///////////
 /////////················································CASO DE USO 7 ENTRENADOR······································///////////
 let objEntrenador = new entrenador();
-console.log(await objEntrenador.registerCoach(
-  {
-    nombre:"Mariana traslaviña",
-    edad:30,
-    nacionalidad:"china",
-    id_equipo:new ObjectId("669993f156837c8431e99dfc"),
-    experiencia: 20
+//test para insercion de un nuevo entrenador tener en cuenta que se debe ingresar el id del equipo al cual va a ser ingresado
+// console.log(await objEntrenador.registerCoach(
+//   {
+//     nombre:"Mariana traslaviña",
+//     edad:30,
+//     nacionalidad:"china",
+//     id_equipo:new ObjectId("669993f156837c8431e99dfc"),
+//     experiencia: 20
 
 
-  }
-));
+//   }
+// ));
+
+
+//test para eliminacion de partido ya existente.
+// console.log(await objEntrenador.deleteCoach("669993b156837c8431e99dd1"));
+
+
+//test para actualizar partido ya existente.
+// al momento de ingresa la experiencia tener en cuenta que debe haber 15 años de diferencia
+// entre experiencia y edad.
+ console.log(await objEntrenador.updateCoach("669993b156837c8431e99dd0",
+   {
+     nombre:"Mariana traslaviña ACTUALIZADA",
+     edad:30,
+     nacionalidad:"china ACTUALIZADA",
+     id_equipo:new ObjectId("669993f156837c8431e99dfc"),
+     experiencia: 14
+
+   }))
+
+
+
 objEntrenador.destructor();
 
 
