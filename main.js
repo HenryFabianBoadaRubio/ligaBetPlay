@@ -87,11 +87,21 @@ let objEquipamiento = new equipamiento();
 
 
 //test para eliminacion de partido ya existente.
-console.log(await objEquipamiento.deleteEquipment({
-  id_equipo:"669993f156837c8431e99dfa",
-  tipo:"Tobilleras"
-}));
-objEquipamiento.destructor();
+// console.log(await objEquipamiento.deleteEquipment({
+//   id_equipo:"669993f156837c8431e99dfa",
+//   tipo:"Tobilleras"
+// }));
+// objEquipamiento.destructor();
+
+
+//Test para la actualización de un partido ya existente.
+// Tener presente que se debe ingresar el id del equipo al cual colocaremos el equipamiento.
+    console.log(await objEquipamiento.updateEquipment({
+      id_equipo: new ObjectId("669993f156837c8431e99dfa"),
+      tipo: "Yersys",
+      cantidad: 80,
+      Fecha_adquisicion:"2024-11-18",
+    }))
 
 
 /////////··············································FIN CASO DE USO 20 ······················································///////////
