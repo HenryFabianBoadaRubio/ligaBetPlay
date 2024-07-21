@@ -1,4 +1,6 @@
 import { connect } from "../../helpers/db/connect.js";
+import { ObjectId } from "mongodb";
+
 
 export class entrenador extends connect {
     static instanceEntrenador;
@@ -28,30 +30,46 @@ export class entrenador extends connect {
         let res;
         try {
             
-            //verificar si el entrenador no existe ya.
-            const coachExist = await this.collection.findOne({ nombre });
+            //verificar si el entrenador no existe ya teniendo en cuenta nombre y edad.
+            const coachExist = await this.collection.findOne({nombre,edad,experiencia});
+            console.log(coachExist)
             if (coachExist) {
                 return {
                     error: "Not valid",
                     message: "El entrenador ya existe"
                 };
             }
+            
 
+            //verificar si el equipo existe
+            let equipoExist=await this.db.collection('equipo').findOne({_id: new ObjectId(id_equipo)})
+            if(!equipoExist){
+                return{
+                    error: "Not found",
+                    message: "El equipo no existe"
+                }
+            
+            }
+                
             //insercion del nuevo entrenador.
             let nuevoCoach= {
-                nombre,
-                edad,
-                nacionalidad,
-                id_equipo: new ObjectId(id_equipo),
-                experiencia
+                nombre:nombre,
+                edad:edad,
+                nacionalidad:nacionalidad,
+                id_equipo:new ObjectId(id_equipo),
+                experiencia:experiencia
             }
             res= await this.collection.insertOne(nuevoCoach);
+
+            //actualizar el id_entrenador en el equipo
+            await this.db.collection('equipo').updateOne({_id: equipoExist._id},{$set:{id_entrenador:res.insertedId}})
             return {
                 message: "Entrenador registrado correctamente",
-                data: res.ops
+                data: res.insertedId
             };
 
         } catch (error) {
+            console.log(error);
             return { error: "Error", message: error.message,details: error.errInfo};
             
         }

@@ -116,7 +116,7 @@ import { ObjectId } from "mongodb";
 /////////················································································································///////////
 /////////················································CASO DE USO 6 COMUNICACION······································///////////
 
-let objComunicacion = new comunicacion();
+// let objComunicacion = new comunicacion();
 //La noticia valida por titulo en ese caso . si sale error es porque ya existe en ese caso debemos cambiar el nombre de la noticia.
 //test para el caso de uso 6 , datos para ingresar la nueva noticia.
 
@@ -142,21 +142,21 @@ let objComunicacion = new comunicacion();
 
 //Test para actualizar noticia ya existe.
 // en la data podemos colcoar los datos que deseamos ingresar para la actualizacion. no son requeridos todos los campos pero es opcional.
- console.log(await objComunicacion.updateNews("6699937456837c8431e99da5",
-   {
-     titulo: "Noticia de Liga  ACTUALIZADA",
-     contenido: "Por Bajo Rendimiento Equipos Eliminados ACTUALIZADO",
-     fechaPublicacion:"2024-10-20T8:00:00.000Z",
-     destinatarios:[
-         "medios",
-         "television"
-     ],
-     periodista:"Miguel castro ACTUALIZADO",
-     tipo: "noticia"
-   }))
+//  console.log(await objComunicacion.updateNews("6699937456837c8431e99da5",
+//    {
+//      titulo: "Noticia de Liga  ACTUALIZADA",
+//      contenido: "Por Bajo Rendimiento Equipos Eliminados ACTUALIZADO",
+//      fechaPublicacion:"2024-10-20T8:00:00.000Z",
+//      destinatarios:[
+//          "medios",
+//          "television"
+//      ],
+//      periodista:"Miguel castro ACTUALIZADO",
+//      tipo: "noticia"
+//    }))
 
 
-objComunicacion.destructor();
+// objComunicacion.destructor();
 
 
 
@@ -179,9 +179,30 @@ objComunicacion.destructor();
 // console.log(await objTemporada.getAllTest());
 // objTemporada.destructor();
 
-// let objEntrenador = new entrenador();
-// console.log(await objEntrenador.getAllTest());
-// objEntrenador.destructor();
+
+
+
+/////////················································································································///////////
+/////////················································CASO DE USO 7 ENTRENADOR······································///////////
+let objEntrenador = new entrenador();
+console.log(await objEntrenador.registerCoach(
+  {
+    nombre:"Mariana traslaviña",
+    edad:30,
+    nacionalidad:"china",
+    id_equipo:new ObjectId("669993f156837c8431e99dfc"),
+    experiencia: 20
+
+
+  }
+));
+objEntrenador.destructor();
+
+
+/////////··············································FIN CASO DE USO 7 ······················································///////////
+/////////················································································································///////////
+
+
 
 // let objTarjeta = new tarjeta();
 // console.log(await objTarjeta.getAllTest());
@@ -217,7 +238,7 @@ objComunicacion.destructor();
 /////////················································································································///////////
 /////////················································CASO DE USO 3 PARTIDO···········································///////////
 
-let objPartido = new partido();
+// let objPartido = new partido();
 // test para insercion de partido 
 // Estos datos son opcionales ya que se pueden cambiar para generar un tipo de partido diferente.
 // console.log(await objPartido.registerGame(
