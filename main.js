@@ -169,8 +169,25 @@ let objPatrocinador = new patrocinador();
 // }));
 
 
-//test para la eliminacion de un patrocinador ya existente.
-console.log(await objPatrocinador.deleteSponsor("6699944b56837c8431e99ea8"));
+//test para la eliminacion de un patrocinador ya existente. 
+//tener presente colocar el id de un patrocinador ya existente para evitar el error de que no se encuentra.
+// console.log(await objPatrocinador.deleteSponsor("6699944b56837c8431e99ea8"));
+
+
+
+//test para la actualización de un patrocinador.
+//el id del patrocinador debe existir para actualizar .
+// tener en cuenta las fechas que se ingresan . para que cumplan con las validaciones de formato y de los tiempos apropiados
+console.log(await objPatrocinador.updateSponsor("6699944b56837c8431e99ea6",
+{
+    nombre:"Ferrari",
+    tipo:"Secundario",
+    monto:50000,
+    fechaInicio:"2024-06-06",
+    fechaFin:"2024-08-15"
+}));
+
+
 
 
 
