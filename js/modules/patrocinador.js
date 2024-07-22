@@ -1,4 +1,5 @@
 import { connect } from "../../helpers/db/connect.js";
+import { ObjectId } from "mongodb";
 
 export class patrocinador extends connect {
     static instancePatrocinador;
@@ -30,14 +31,51 @@ export class patrocinador extends connect {
             //Verificar el formato de fechas que sea AA-MM-DD
             const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
             if (!dateRegex.test(fechaInicio) ||!dateRegex.test(fechaFin)) {
-                throw new Error("Formato de fecha inválido. Debe ser AA-MM-DD");
+                return{
+                    error: "Error",
+                    message: "Formato de fecha incorrecto. Debe ser AA-MM-DD",
+                    data: {
+                        ejemploFormatoCorrecto: "2024-07-21"
+                    }
+                }
             }
+
+             //Validar que la fecha de fin sea posterior a la fecha de inicio
+             const start = new Date(fechaInicio);
+             const end = new Date(fechaFin);
+ 
+             if (end <= start) {
+                 return{
+                     error: "Error",
+                     message: "La fecha de fin debe ser posterior a la fecha de inicio",
+                    
+
+                 }
+             }
 
             //Validar que el monto sea un número mayor a cero
             if (typeof monto!== 'number' || monto <= 0) {
-                throw new Error("El monto debe ser un número mayor a cero");
+                return{
+                    error: "Error",
+                    message: "El monto debe ser un número mayor a cero",
+                   
+                }
             }
-            
+
+           //registrar nuevo patrocinador
+            res = await this.collection.insertOne({
+                nombre:nombre,
+                tipo:tipo,
+                monto:monto,
+                fechaInicio:new Date(fechaInicio),
+                fechaFin:new Date(fechaFin)
+                });
+            return {
+                message: "Patrocinador registrado correctamente",
+                data: res.insertedId
+            }
+
+
         } catch (error) {
             return { error: "Error", message: error.message,details: error.errInfo};
             
