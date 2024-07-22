@@ -33,131 +33,176 @@ import { convocatoria } from './js/modules/convocatoria.js';
 import { resultado } from './js/modules/resultado.js';
 import { partido } from './js/modules/partido.js';
 
-let objTransferencia = new transferencia();
-console.log(await objTransferencia.getAllTest());
-objTransferencia.destructor();
+// let objTransferencia = new transferencia();
+// console.log(await objTransferencia.getAllTest());
+// objTransferencia.destructor();
 
-let objSancion = new sancion();
-console.log(await objSancion.getAllTest());
-objSancion.destructor();
+// let objSancion = new sancion();
+// console.log(await objSancion.getAllTest());
+// objSancion.destructor();
 
-let objEstadisticaPartido = new estadistica_partido();
-console.log(await objEstadisticaPartido.getAllTest());
-objEstadisticaPartido.destructor();
+// let objEstadisticaPartido = new estadistica_partido();
+// console.log(await objEstadisticaPartido.getAllTest());
+// objEstadisticaPartido.destructor();
 
-let objEntrada = new entrada();
-console.log(await objEntrada.getAllTest());
-objEntrada.destructor();
+// let objEntrada = new entrada();
+// console.log(await objEntrada.getAllTest());
+// objEntrada.destructor();
 
-let objInforme = new informe();
-console.log(await objInforme.getAllTest());
-objInforme.destructor();
+// let objInforme = new informe();
+// console.log(await objInforme.getAllTest());
+// objInforme.destructor();
 
-let objEstadio = new estadio();
-console.log(await objEstadio.getAllTest());
-objEstadio.destructor();
+// let objEstadio = new estadio();
+// console.log(await objEstadio.getAllTest());
+// objEstadio.destructor();
 
-let objPermiso = new permiso();
-console.log(await objPermiso.getAllTest());
-objPermiso.destructor();
+// let objPermiso = new permiso();
+// console.log(await objPermiso.getAllTest());
+// objPermiso.destructor();
 
-let objEntrenamiento = new entrenamiento();
-console.log(await objEntrenamiento.getAllTest());
-objEntrenamiento.destructor();
+// let objEntrenamiento = new entrenamiento();
+// console.log(await objEntrenamiento.getAllTest());
+// objEntrenamiento.destructor();
 
-let objRol = new rol();
-console.log(await objRol.getAllTest());
-objRol.destructor();
+// let objRol = new rol();
+// console.log(await objRol.getAllTest());
+// objRol.destructor();
 
-let objEquipamiento = new equipamiento();
-console.log(await objEquipamiento.getAllTest());
-objEquipamiento.destructor();
+// let objEquipamiento = new equipamiento();
+// console.log(await objEquipamiento.getAllTest());
+// objEquipamiento.destructor();
 
-let objPremio = new premio();
-console.log(await objPremio.getAllTest());
-objPremio.destructor();
+// let objPremio = new premio();
+// console.log(await objPremio.getAllTest());
+// objPremio.destructor();
 
-let objEstadisticaJugador = new estadistica_jugador();
-console.log(await objEstadisticaJugador.getAllTest());
-objEstadisticaJugador.destructor();
+// let objEstadisticaJugador = new estadistica_jugador();
+// console.log(await objEstadisticaJugador.getAllTest());
+// objEstadisticaJugador.destructor();
 
-let objPatrocinador = new patrocinador();
-console.log(await objPatrocinador.getAllTest());
-objPatrocinador.destructor();
+// let objPatrocinador = new patrocinador();
+// console.log(await objPatrocinador.getAllTest());
+// objPatrocinador.destructor();
 
-let objEstadisticaTemporada = new estadistica_temporada();
-console.log(await objEstadisticaTemporada.getAllTest());
-objEstadisticaTemporada.destructor();
+// let objEstadisticaTemporada = new estadistica_temporada();
+// console.log(await objEstadisticaTemporada.getAllTest());
+// objEstadisticaTemporada.destructor();
 
-let objGol = new gol();
-console.log(await objGol.getAllTest());
-objGol.destructor();
+// let objGol = new gol();
+// console.log(await objGol.getAllTest());
+// objGol.destructor();
 
-let objJugador = new jugador();
-console.log(await objJugador.getAllTest());
-objJugador.destructor();
+// let objJugador = new jugador();
+// console.log(await objJugador.getAllTest());
+// objJugador.destructor();
 
-let objUsuario = new usuario();
-console.log(await objUsuario.getAllTest());
-objUsuario.destructor();
+// let objUsuario = new usuario();
+// console.log(await objUsuario.getAllTest());
+// objUsuario.destructor();
 
-let objCalendario = new calendario();
-console.log(await objCalendario.getAllTest());
-objCalendario.destructor();
+// let objCalendario = new calendario();
+// console.log(await objCalendario.getAllTest());
+// objCalendario.destructor();
 
-let objArbitro = new arbitro();
-console.log(await objArbitro.getAllTest());
-objArbitro.destructor();
+// let objArbitro = new arbitro();
+// console.log(await objArbitro.getAllTest());
+// objArbitro.destructor();
 
-let objComunicacion = new comunicacion();
-console.log(await objComunicacion.getAllTest());
-objComunicacion.destructor();
+// let objComunicacion = new comunicacion();
+// console.log(await objComunicacion.getAllTest());
+// objComunicacion.destructor();
+
+
+/*---------------------------------------------------------------- CASO DE USO 1 -----------------------------------------------------------------*/
+
+// 1. Gestion de equipos
+async function caso1(){
 
 let objEquipo = new equipo();
-console.log(await objEquipo.getAllTest());
+
+// Registrar un nuevo equipo con un ID específico
+console.log(await objEquipo.registerTeam({
+    _id: "60d5f49a9f1b2c6d88f7e46b",
+    nombre: "Caterpilar motors",
+    ciudad: "Bogotá",
+    id_estadio: "669993fb56837c8431e99e0f",
+    id_entrenador: "669993a956837c8431e99dc0",
+    id_jugadores: [
+        "6699942656837c8431e99e5f",
+        "6699942656837c8431e99e60",
+        "6699942656837c8431e99e61"
+    ],
+    id_partido: [
+        "6699944056837c8431e99e86",
+        "6699944056837c8431e99e87"
+    ]
+}));
+
+// Actualizar un equipo existente
+// console.log(await objEquipo.updateTeam("60d5f49a9f1b2c6d88f7e46b", {
+//     nombre: "Caterpilar motors Actualizacion",
+//     ciudad: "Bogotá",
+//     id_estadio: "5f6a6dcd3b23a1c35d5e8b15",
+//     id_entrenador: "5f6a6dcd3b23a1c35d5e8b25",
+//     id_jugadores: [
+//         "5f6a6dcd3b23a1c35d5e8c05",
+//         "5f6a6dcd3b23a1c35d5e8c06"
+//     ],
+//     id_partido: [
+//         "5f6a6dcd3b23a1c35d5e8d03"
+//     ]
+// }));
+
+// Eliminar un equipo existente
+// console.log(await objEquipo.deleteTeam("60d5f49a9f1b2c6d88f7e46b"));
+
 objEquipo.destructor();
+}
+// caso1()
 
-let objEstadisticaEquipo = new estadistica_equipo();
-console.log(await objEstadisticaEquipo.getAllTest());
-objEstadisticaEquipo.destructor();
 
-let objTemporada = new temporada();
-console.log(await objTemporada.getAllTest());
-objTemporada.destructor();
+// let objEstadisticaEquipo = new estadistica_equipo();
+// console.log(await objEstadisticaEquipo.getAllTest());
+// objEstadisticaEquipo.destructor();
 
-let objEntrenador = new entrenador();
-console.log(await objEntrenador.getAllTest());
-objEntrenador.destructor();
+// let objTemporada = new temporada();
+// console.log(await objTemporada.getAllTest());
+// objTemporada.destructor();
 
-let objTarjeta = new tarjeta();
-console.log(await objTarjeta.getAllTest());
-objTarjeta.destructor();
+// let objEntrenador = new entrenador();
+// console.log(await objEntrenador.getAllTest());
+// objEntrenador.destructor();
 
-let objActividad = new actividad();
-console.log(await objActividad.getAllTest());
-objActividad.destructor();
+// let objTarjeta = new tarjeta();
+// console.log(await objTarjeta.getAllTest());
+// objTarjeta.destructor();
 
-let objRendimiento = new rendimiento();
-console.log(await objRendimiento.getAllTest());
-objRendimiento.destructor();
+// let objActividad = new actividad();
+// console.log(await objActividad.getAllTest());
+// objActividad.destructor();
 
-let objLesion = new lesion();
-console.log(await objLesion.getAllTest());
-objLesion.destructor();
+// let objRendimiento = new rendimiento();
+// console.log(await objRendimiento.getAllTest());
+// objRendimiento.destructor();
 
-let objIncidente = new incidente();
-console.log(await objIncidente.getAllTest());
-objIncidente.destructor();
+// let objLesion = new lesion();
+// console.log(await objLesion.getAllTest());
+// objLesion.destructor();
 
-let objConvocatoria = new convocatoria();
-console.log(await objConvocatoria.getAllTest());
-objConvocatoria.destructor();
+// let objIncidente = new incidente();
+// console.log(await objIncidente.getAllTest());
+// objIncidente.destructor();
 
-let objResultado = new resultado();
-console.log(await objResultado.getAllTest());
-objResultado.destructor();
+// let objConvocatoria = new convocatoria();
+// console.log(await objConvocatoria.getAllTest());
+// objConvocatoria.destructor();
 
-let objPartido = new partido();
-console.log(await objPartido.getAllTest());
-objPartido.destructor();
+// let objResultado = new resultado();
+// console.log(await objResultado.getAllTest());
+// objResultado.destructor();
+
+// let objPartido = new partido();
+// console.log(await objPartido.getAllTest());
+// objPartido.destructor();
 
