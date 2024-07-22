@@ -535,3 +535,103 @@ console.log(await objPremio.updatePrize("6699947856837c8431e99ed1",{
 }));
 ```
 
+
+
+## Caso de uso 24: Gestión de Patrocinadores y Publicidad
+
+### registerSponsor():
+
+Metodo para la insercion de un nuevo patrocinador a la base de datos.
+
+#### Parámetros
+
+- `datosPatrocinador`(Object): Los datos del patrocinador a registrar.
+- `nombre` (string): El nombre del patrocinador.
+- `tipo` (string): El tipo de patrocinador.
+- `monto` (number): El monto del patrocinador.
+- `fechaInicio` (string): La fecha de inicio del patrocinador en formato 'AA-MM-DD'.
+- `fechaFin` (string): La fecha de fin del patrocinador en formato 'AA-MM-DD'.
+
+#### Retorno
+
+La función retorna un objeto que contiene:
+
+- `error` (Object): Indica si hubo un error durante el registro.
+- `message` (Object): Mensaje de éxito o error.
+- `data`(Object): Datos adicionales en caso de éxito, como el ID del patrocinador registrado.
+- `ejemploFormatoCorrecto` (string): Ejemplo de formato de fecha correcto.
+- `details` (Object): Detalles del error en caso de fallo.
+
+```javascript
+let objPatrocinador = new patrocinador();
+console.log(await objPatrocinador.registerSponsor({
+    nombre: "Poker",
+    tipo: "Principal",
+    monto: 1,
+    fechaInicio:"2024-05-10",
+    fechaFin:"2024-08-09",
+}));
+```
+
+
+
+### deleteSponsor():
+
+Metodo para la eliminacion de un patrocinador existente de la base de datos.
+
+#### Parámetros
+
+- `id` (string): El ID del patrocinador a eliminar.
+
+#### Retorno
+
+La función retorna un objeto que contiene:
+
+- `error` (Object): Indica si hubo un error durante el proceso.
+- `message` (Object): Mensaje de éxito o error.
+- `data` (Object): Datos adicionales en caso de éxito, como el número de patrocinadores eliminados.
+- `details` (Object): Detalles del error en caso de fallo.
+
+```javascript
+let objPatrocinador = new patrocinador();
+console.log(await objPatrocinador.deleteSponsor("6699944b56837c8431e99ea8"));
+
+```
+
+
+
+### updateSponsor():
+
+Metodo para la actualizacion de un patrocinador ya existente en la base de datos.
+
+#### Parámetros
+
+- `id` (string): El ID del patrocinador a actualizar.
+- `datosPatrocinador`(Object): Los nuevos datos del patrocinador.
+- `nombre` (string): El nuevo nombre del patrocinador.
+- `tipo` (string): El nuevo tipo de patrocinador.
+- `monto` (number): El nuevo monto del patrocinador.
+- `fechaInicio` (string): La nueva fecha de inicio del patrocinador en formato 'AA-MM-DD'.
+- `fechaFin` (string): La nueva fecha de fin del patrocinador en formato 'AA-MM-DD'.
+
+#### Retorno
+
+La función retorna un objeto que contiene:
+
+- `error` (Object): Indica si hubo un error durante la actualización.
+- `message` (Object): Mensaje de éxito o error.
+- `data` (Object): Datos adicionales en caso de éxito, como el resultado de la operación de actualización.
+- `details` (Object): Detalles del error en caso de fallo.
+
+```javascript
+let objPatrocinador = new patrocinador();
+console.log(await objPatrocinador.updateSponsor("6699944b56837c8431e99ea6",
+{
+    nombre:"Ferrari",
+    tipo:"Secundario",
+    monto:50000,
+    fechaInicio:"2024-06-06",
+    fechaFin:"2024-08-15"
+}));
+```
+

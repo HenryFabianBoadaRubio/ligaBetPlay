@@ -112,7 +112,7 @@ import { ObjectId } from "mongodb";
 
 /////////················································································································///////////
 /////////················································CASO DE USO 22 PREMIO······································///////////
-let objPremio = new premio();
+// let objPremio = new premio();
 //test para insercion de un nuevo premio . tener presente el momento de ingresar se hace teniendo en cuenta
 //el id del jugador al cual se le otorgara el reconocimiento, si el jugador ya posee este mismo premio saldra error. adicional el formato de la fecha debe ser AA-MM-DD
 // console.log(await objPremio.registerPrize(
@@ -132,18 +132,18 @@ let objPremio = new premio();
 
 //test para actualizar el premio ya existente
 //tener presente ingresar un id de premio ya existente o sino dara error al igual que con el jugador.
-console.log(await objPremio.updatePrize("6699947856837c8431e99ed1",{
-  nombre: "Medalla de diamante",
-  descripcion:"Reconocimiento por mejor jugador del torneo brindado por henry",
-  fecha:"2024-01-12",
-  id_jugador:new ObjectId("6699942656837c8431e99e60")
-}));
+// console.log(await objPremio.updatePrize("6699947856837c8431e99ed1",{
+//   nombre: "Medalla de diamante",
+//   descripcion:"Reconocimiento por mejor jugador del torneo brindado por henry",
+//   fecha:"2024-01-12",
+//   id_jugador:new ObjectId("6699942656837c8431e99e60")
+// }));
 
 
 
 
 
-objPremio.destructor();
+// objPremio.destructor();
 
 
 /////////··············································FIN CASO DE USO 22 ······················································///////////
@@ -153,9 +153,48 @@ objPremio.destructor();
 // console.log(await objEstadisticaJugador.getAllTest());
 // objEstadisticaJugador.destructor();
 
-// let objPatrocinador = new patrocinador();
-// console.log(await objPatrocinador.getAllTest());
-// objPatrocinador.destructor();
+
+/////////················································································································///////////
+/////////················································CASO DE USO 24 PATROCINADOR······································///////////
+let objPatrocinador = new patrocinador();
+
+//test para la correcta insercion de un patrocinador tener en cuenta las fechas de inicio y fin debe ser logicas.
+// el monto no puede ser 0 
+// console.log(await objPatrocinador.registerSponsor({
+//     nombre: "Poker",
+//     tipo: "Principal",
+//     monto: 1,
+//     fechaInicio:"2024-05-10",
+//     fechaFin:"2024-08-09",
+// }));
+
+
+//test para la eliminacion de un patrocinador ya existente. 
+//tener presente colocar el id de un patrocinador ya existente para evitar el error de que no se encuentra.
+// console.log(await objPatrocinador.deleteSponsor("6699944b56837c8431e99ea8"));
+
+
+
+//test para la actualización de un patrocinador.
+//el id del patrocinador debe existir para actualizar .
+// tener en cuenta las fechas que se ingresan . para que cumplan con las validaciones de formato y de los tiempos apropiados
+console.log(await objPatrocinador.updateSponsor("6699944b56837c8431e99ea6",
+{
+    nombre:"Ferrari",
+    tipo:"Secundario",
+    monto:50000,
+    fechaInicio:"2024-06-06",
+    fechaFin:"2024-08-15"
+}));
+
+
+
+
+
+objPatrocinador.destructor();
+
+/////////··············································FIN CASO DE USO 24 ······················································///////////
+/////////················································································································///////////
 
 // let objEstadisticaTemporada = new estadistica_temporada();
 // console.log(await objEstadisticaTemporada.getAllTest());
