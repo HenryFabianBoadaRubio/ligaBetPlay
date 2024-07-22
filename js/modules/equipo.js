@@ -77,5 +77,16 @@ export class equipo extends connect {
             return { error: "Error", message: error.message, details: error.errInfo };
         }
     }
-
+    async deleteTeam(id){
+        let res;
+        try {
+            res = await this.collection.deleteOne({ _id: new ObjectId(id) });
+            return {
+                message: "Equipo eliminado correctamente",
+                data: res
+            };
+        } catch (error) {
+            return { error: "Error", message: error.message, details: error.errInfo };
+        }
+    }
 }
