@@ -2,6 +2,8 @@ import { ObjectId } from 'mongodb';
 import { connect } from '../../helpers/db/connect.js';
 
 
+// 1. Gestion de equipos
+
 export class equipo extends connect {
     static instanceEquipo;
     db;
