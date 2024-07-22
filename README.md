@@ -535,3 +535,122 @@ El sistema de gestión propuesto debe abordar las siguientes necesidades:
 - **Comunicacion** tiene destinatarios de tipo **Usuario**.
 - **Entrada** está relacionada con **Partido** y **Usuario**.
 - **Estadio** tiene una lista de **Partidos**.
+
+# Documentacion LigaBetPlay
+
+### **1. Gestión de Equipos**
+
+**Actor:** Administrador de la Liga
+**Descripción:** El administrador puede agregar, editar y eliminar equipos de la liga.
+**Precondiciones:** El administrador debe estar autenticado.
+**Flujo Principal:**
+
+1. El administrador accede al módulo de gestión de equipos.
+2. El administrador selecciona la opción de agregar equipo.
+3. El administrador ingresa la información del equipo (nombre, estadio, ciudad, etc.).
+4. El sistema guarda la información del equipo.
+5. El administrador puede editar o eliminar equipos existentes.
+
+> **Estado:**   Finalizado.
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** equipo
+> 
+
+> **Usuario:** adminLigaBetPlay / adminLiga1234
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay.
+
+**Link de conexion en mongo:** mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+
+# Módulo: Gestión de Equipos
+
+### Descripción:
+Este módulo demuestra las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para la gestión de equipos en una base de datos.
+
+Función: caso1()
+
+### Descripción:
+Función asíncrona que ejecuta una serie de operaciones de gestión de equipos como ejemplo de uso de la clase 'equipo'.
+
+### Ejecución:
+1. Creación de un nuevo equipo:
+   - Crea una instancia de la clase 'equipo'.
+   - Registra un nuevo equipo con datos específicos, incluyendo ID, nombre, ciudad, y referencias a estadio, entrenador, jugadores y partidos.
+   - Imprime el resultado de la operación en la consola.
+
+2. Actualización de un equipo existente:
+   - Actualiza el equipo recién creado con nueva información.
+   - Modifica nombre, referencias a estadio, entrenador, jugadores y partidos.
+   - Imprime el resultado de la actualización en la consola.
+
+3. Eliminación de un equipo:
+   - Elimina el equipo utilizando su ID.
+   - Imprime el resultado de la eliminación en la consola.
+
+4. Limpieza:
+   - Llama al método destructor del objeto equipo para liberar recursos.
+
+### Retorno:
+La función no retorna un valor directamente, pero imprime en consola los resultados de cada operación:
+- Para el registro: ID del equipo creado o un indicador de éxito.
+- Para la actualización: Número de documentos actualizados (debería ser 1).
+- Para la eliminación: Número de documentos eliminados (debería ser 1).
+
+## Notas:
+- Todas las operaciones son asíncronas y utilizan 'await' para manejar las promesas.
+- Se asume que la clase 'equipo' tiene métodos para registrar, actualizar y eliminar equipos.
+- Los IDs utilizados son strings, lo que sugiere que podrían ser ObjectIds de MongoDB.
+- El manejo de errores no está explícito en esta función y debería ser implementado en un entorno de producción.
+
+```js
+// 1. Gestion de equipos
+async function caso1(){
+
+let objEquipo = new equipo();
+
+// Registrar un nuevo equipo con un ID específico
+console.log(await objEquipo.registerTeam({
+    _id: "60d5f49a9f1b2c6d88f7e46b",
+    nombre: "Caterpilar motors",
+    ciudad: "Bogotá",
+    id_estadio: "669993fb56837c8431e99e0f",
+    id_entrenador: "669993a956837c8431e99dc0",
+    id_jugadores: [
+        "6699942656837c8431e99e5f",
+        "6699942656837c8431e99e60",
+        "6699942656837c8431e99e61"
+    ],
+    id_partido: [
+        "6699944056837c8431e99e86",
+        "6699944056837c8431e99e87"
+    ]
+}));
+
+// Actualizar un equipo existente
+console.log(await objEquipo.updateTeam("60d5f49a9f1b2c6d88f7e46b", {
+    nombre: "Caterpilar motors Actualizacion",
+    ciudad: "Bogotá",
+    id_estadio: "5f6a6dcd3b23a1c35d5e8b15",
+    id_entrenador: "5f6a6dcd3b23a1c35d5e8b25",
+    id_jugadores: [
+        "5f6a6dcd3b23a1c35d5e8c05",
+        "5f6a6dcd3b23a1c35d5e8c06"
+    ],
+    id_partido: [
+        "5f6a6dcd3b23a1c35d5e8d03"
+    ]
+}));
+
+// Eliminar un equipo existente
+console.log(await objEquipo.deleteTeam("60d5f49a9f1b2c6d88f7e46b"));
+
+objEquipo.destructor();
+}
+caso1()
+```
