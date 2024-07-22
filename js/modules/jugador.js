@@ -46,5 +46,29 @@ export class jugador extends connect {
         return resultado.insertedId;
     }
 
-   
+    async editarJugador(id, jugadorData) {
+        await this.conexion.connect();
+        const resultado = await this.collection.updateOne(
+            { _id: new ObjectId(id) },
+            { $set: {
+                nombre: jugadorData.nombre,
+                edad: jugadorData.edad,
+                posicion: jugadorData.posicion,
+                nacionalidad: jugadorData.nacionalidad,
+                numeroCamiseta: jugadorData.numeroCamiseta,
+                id_equipo: new ObjectId(jugadorData.id_equipo),
+                id_lesion: jugadorData.id_lesion.map(id => new ObjectId(id)),
+                id_rendimiento: jugadorData.id_rendimiento.map(id => new ObjectId(id))
+            } }
+        );
+        await this.conexion.close();
+        return resultado.modifiedCount;
+    }
+
+    async eliminarJugador(id) {
+        await this.conexion.connect();
+        const resultado = await this.collection.deleteOne({ _id: new ObjectId(id) });
+        await this.conexion.close();
+        return resultado.deletedCount;
+    }
 }
