@@ -23,7 +23,7 @@ export class jugador extends connect {
 
     async registrarJugador(jugadorData) {
         await this.conexion.connect();
-        const jugadorExistente = await this.collection.findOne({ nombre: {$regex: new RegExp(`^${jugadorData.nombre}$`, i)}});
+        const jugadorExistente = await this.collection.findOne({ nombre: {$regex: new RegExp(`^${jugadorData.nombre}$`, 'i')}});
         if (jugadorExistente) {
             await this.conexion.close();
             throw new Error("El jugador ya existe");
