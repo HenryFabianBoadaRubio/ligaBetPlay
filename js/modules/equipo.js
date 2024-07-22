@@ -1,9 +1,11 @@
-import { connect } from "../../helpers/db/connect.js";
+import { ObjectId } from 'mongodb';
+import { connect } from '../../helpers/db/connect.js';
 
 export class equipo extends connect {
     static instanceEquipo;
     db;
     collection;
+
     constructor() {
         if (equipo.instanceEquipo) {
             return equipo.instanceEquipo;
@@ -13,14 +15,18 @@ export class equipo extends connect {
         this.collection = this.db.collection('equipo');
         equipo.instanceEquipo = this;
     }
-    destructor(){
+
+    destructor() {
         equipo.instanceEquipo = undefined;
         connect.instanceConnect = undefined;
     }
-    async getAllTest() {
+
+    async validarEquipo(nombre) {
         await this.conexion.connect();
-        const res = await this.collection.find({}).toArray(); 
+        const equipoExistente = await this.collection.findOne({ nombre: nombre });
         await this.conexion.close();
-        return res;
+        return equipoExistente;
     }
+
 }
+
