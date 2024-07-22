@@ -48,8 +48,6 @@ export class patrocinador extends connect {
                  return{
                      error: "Error",
                      message: "La fecha de fin debe ser posterior a la fecha de inicio",
-                    
-
                  }
              }
 
@@ -58,7 +56,6 @@ export class patrocinador extends connect {
                 return{
                     error: "Error",
                     message: "El monto debe ser un número mayor a cero",
-                   
                 }
             }
 
@@ -78,6 +75,30 @@ export class patrocinador extends connect {
 
         } catch (error) {
             return { error: "Error", message: error.message,details: error.errInfo};
+            
+        }
+    }
+
+    async deleteSponsor(id){
+        let res;
+        try {
+            //Verificar que el patrocinador que se quiere eliminar exista.
+            const patrocinador = await this.collection.findOne({_id: new ObjectId(id)});
+            if (!patrocinador) {
+                return{
+                    error: "Error",
+                    message: "No se encontró el patrocinador con el id: " + id
+                }
+            }
+            
+            //eliminar patrocinador
+            res = await this.collection.deleteOne({_id: new ObjectId(id)});
+            return {
+                message: "Patrocinador eliminado correctamente",
+                data: res.deletedCount
+            }
+        } catch (error) {
+            return { error: "Error", message: error.message, details: error.errInfo};
             
         }
     }

@@ -157,13 +157,23 @@ import { ObjectId } from "mongodb";
 /////////················································································································///////////
 /////////················································CASO DE USO 24 PATROCINADOR······································///////////
 let objPatrocinador = new patrocinador();
-console.log(await objPatrocinador.registerSponsor({
-    nombre: "Poker",
-    tipo: "Principal",
-    monto: 1,
-    fechaInicio:"2024-05-10",
-    fechaFin:"2024-08-09",
-}));
+
+//test para la correcta insercion de un patrocinador tener en cuenta las fechas de inicio y fin debe ser logicas.
+// el monto no puede ser 0 
+// console.log(await objPatrocinador.registerSponsor({
+//     nombre: "Poker",
+//     tipo: "Principal",
+//     monto: 1,
+//     fechaInicio:"2024-05-10",
+//     fechaFin:"2024-08-09",
+// }));
+
+
+//test para la eliminacion de un patrocinador ya existente.
+console.log(await objPatrocinador.deleteSponsor("6699944b56837c8431e99ea8"));
+
+
+
 objPatrocinador.destructor();
 
 /////////··············································FIN CASO DE USO 24 ······················································///////////
