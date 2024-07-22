@@ -93,9 +93,6 @@ import { partido } from './js/modules/partido.js';
 // console.log(await objGol.getAllTest());
 // objGol.destructor();
 
-// let objJugador = new jugador();
-// console.log(await objJugador.getAllTest());
-// objJugador.destructor();
 
 // let objUsuario = new usuario();
 // console.log(await objUsuario.getAllTest());
@@ -161,6 +158,56 @@ objEquipo.destructor();
 }
 // caso1()
 
+/*---------------------------------------------------------------- FIN CASO DE USO 1 -----------------------------------------------------------------*/
+
+/*---------------------------------------------------------------- CASO DE USO 2 -----------------------------------------------------------------*/
+
+// 2. Gestión de jugadores
+
+async function caso2() {
+  let objJugador = new jugador();
+
+  // Registrar un nuevo jugador
+  console.log(await objJugador.registrarJugador({
+      _id: "60d5f49a9f1b2c6d88f7e46e",
+      nombre: "Lautaro Martinez",
+      edad: 30,
+      posicion: "Delantero",
+      nacionalidad: "Argentino",
+      numeroCamiseta: 9,
+      id_equipo: "669993f156837c8431e99dff",
+      id_lesion: [
+          "6699942f56837c8431e99e72",
+          "6699942f56837c8431e99e71"
+      ],
+      id_rendimiento: [
+          "6699948156837c8431e99ed4",
+          "6699948856837c8431e99ee4"
+      ]
+  }));
+
+  // Actualizar un jugador existente
+  // console.log(await objJugador.editarJugador("60d5f49a9f1b2c6d88f7e46e", {
+  //     nombre: "Lautaro Martinez Modificado",
+  //     edad: 32,
+  //     posicion: "Mediapunta",
+  //     nacionalidad: "Argentino",
+  //     numeroCamiseta: 11,
+  //     id_equipo: "669993f156837c8431e99dff",
+  //     id_lesion: ["6699942f56837c8431e99e71"],
+  //     id_rendimiento: ["6699948156837c8431e99ed4"]
+  // }));
+
+  // Eliminar un jugador existente
+  // console.log(await objJugador.eliminarJugador("60d5f49a9f1b2c6d88f7e46e"));
+
+  objJugador.destructor();
+}
+
+caso2().catch(console.error);
+
+
+/*---------------------------------------------------------------- FIN DE USO 1 -----------------------------------------------------------------*/
 
 // let objEstadisticaEquipo = new estadistica_equipo();
 // console.log(await objEstadisticaEquipo.getAllTest());
