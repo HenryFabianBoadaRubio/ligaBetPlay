@@ -904,3 +904,103 @@ async function caso8() {
 }
 caso8().catch(console.error);
 ```
+
+# ______________________________________________________________________________________________
+
+### 9. Gestión de Estadios
+
+**Actor:** Administrador de la Liga **Descripción:** Permite registrar, editar y eliminar estadios donde se jugarán los partidos. **Precondiciones:** El administrador debe estar autenticado. **Flujo Principal:**
+
+1. El administrador accede al módulo de gestión de estadios.
+2. El administrador selecciona la opción de agregar estadio.
+3. El administrador ingresa la información del estadio (nombre, capacidad, ubicación, etc.).
+4. El sistema guarda la información del estadio.
+5. El administrador puede editar o eliminar estadios existentes.
+
+> **Estado:**   Finalización
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** arbitro
+> 
+
+> **Usuario:** adminLigaBetPlay / adminLiga1234
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay.
+
+**Link de conexion en mongo:** mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+### Función `caso9`
+
+- **Descripción**: Realiza operaciones CRUD en una colección de estadios.
+- **Retorno**: `Promise<void>` - Una promesa que se resuelve cuando todas las operaciones se han completado.
+- **Errores**: Lanza un error si alguna de las operaciones falla.
+
+### Método `registerStadium`
+
+- **Descripción**: Registra un nuevo estadio en la base de datos.
+- **Parámetros**:
+    - `estadio` (Object): Detalles del estadio.
+        - `_id` (string): ID único del estadio.
+        - `nombre` (string): Nombre del estadio.
+        - `ubicacion` (string): Ubicación del estadio.
+        - `capacidad` (number): Capacidad del estadio.
+- **Retorno**: `Promise<Object>` - Detalles del estadio registrado.
+
+### Método `updateStadium`
+
+- **Descripción**: Actualiza la información de un estadio existente.
+- **Parámetros**:
+    - `id` (string): ID único del estadio a actualizar.
+    - `estadio` (Object): Nuevos detalles del estadio.
+        - `nombre` (string): Nuevo nombre del estadio.
+        - `ubicacion` (string): Nueva ubicación del estadio.
+        - `capacidad` (number): Nueva capacidad del estadio.
+- **Retorno**: `Promise<Object>` - Detalles del estadio actualizado.
+
+### Método `deleteStadium`
+
+- **Descripción**: Elimina un estadio existente de la base de datos.
+- **Parámetros**:
+    - `id` (string): ID único del estadio a eliminar.
+- **Retorno**: `Promise<Object>` - Resultado de la operación de eliminación.
+
+### Método `destructor`
+
+- **Descripción**: Libera los recursos utilizados por `objEstadioGestion`.
+
+```jsx
+async function caso9() {
+    const objEstadioGestion = new EstadioGestion();
+
+    try {
+        // Registrar un nuevo estadio
+        console.log(await objEstadioGestion.registerStadium({
+            _id: "60d5f49a9f1b2c6d88f7e47c",
+            nombre: "Estadio El Campín",
+            ubicacion: "Bogotá",
+            capacidad: 50000
+        }));
+
+        // Actualizar un estadio existente
+        console.log(await objEstadioGestion.updateStadium("60d5f49a9f1b2c6d88f7e47c", {
+            nombre: "Estadio El Campín Modificado",
+            ubicacion: "Bogotá",
+            capacidad: 55000
+        }));
+
+        // Eliminar un estadio existente
+        console.log(await objEstadioGestion.deleteStadium("60d5f49a9f1b2c6d88f7e47c"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objEstadioGestion.destructor();
+    }
+}
+
+caso9().catch(console.error);
+```
