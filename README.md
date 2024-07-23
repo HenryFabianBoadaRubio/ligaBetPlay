@@ -1,6 +1,3 @@
-# Documentación del proyecto: 
-**Link notion:** https://trail-outrigger-8d9.notion.site/Documentacion-LigaBetPlay-90c6f4725ec24c789c59a35356d07fc1?pvs=4
-
 # LigaBetPlay
 
 La Liga BetPlay es la liga de fútbol profesional de Colombia, que requiere un sistema de gestión integral para administrar todos los aspectos relacionados con la liga, desde la gestión de equipos y jugadores hasta la programación de partidos y la interacción con los aficionados. Actualmente, la gestión de la liga se realiza manualmente o con múltiples sistemas no integrados, lo que genera ineficiencias, errores y dificultades en la toma de decisiones.
@@ -654,3 +651,105 @@ objEquipo.destructor();
 }
 caso1()
 ```
+
+
+### **2. Gestión de Jugadores**
+
+**Actor:** Administrador de la Liga, Equipo Técnico
+**Descripción:** Permite registrar, editar y eliminar jugadores de los equipos.
+**Precondiciones:** El actor debe estar autenticado.
+**Flujo Principal:**
+
+1. El actor accede al módulo de gestión de jugadores.
+2. El actor selecciona la opción de agregar jugador.
+3. El actor ingresa la información del jugador (nombre, edad, posición, etc.).
+4. El sistema guarda la información del jugador.
+5. El actor puede editar o eliminar jugadores existentes.
+
+> **Estado:**   Finalizado
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** jugador
+> 
+
+> **Usuario:** (adminLigaBetPlay / adminLiga1234) & / (equipoTecnicoLigaBetPlay / equipoTecnico1234)
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay y el usuario equipoTecnicoLigaBetPLay:
+
+**Link de conexion en mongo:** 
+
+- mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+- mongodb://equipoTecnicoLigaBetPlay:equipoTecnico1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+En la implementación de este caso de uso, se consideraron los siguientes aspectos:
+
+1. Validación de existencia: Se verifica si el jugador ya existe en el sistema.
+2. Gestión de jugador:
+    - Registro: Si el jugador no existe, se permite su creación.
+    - Edición: Se facilita la modificación de datos de jugadores existentes.
+    - Eliminación: Se ofrece la opción de eliminar jugadores del sistema.
+3. Interacción con el usuario: Las operaciones se realizan según las necesidades y preferencias del usuario que ejecuta el caso de uso.
+
+Este enfoque asegura una gestión integral de jugadores, permitiendo un control eficiente y adaptado a los requerimientos del usuario.
+
+
+# Módulo: Gestión de Jugadores
+
+## Descripción:
+
+Este módulo demuestra las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para la gestión de jugadores en una base de datos.
+Función: caso2()
+
+## Descripción:
+Función asíncrona que ejecuta una serie de operaciones de gestión de jugadores como ejemplo de uso de la clase 'jugador'.
+
+## Ejecución:
+
+### Creación de un nuevo jugador:
+
+Crea una instancia de la clase 'jugador'.
+Registra un nuevo jugador (Lautaro Martinez) con datos específicos, incluyendo ID, nombre, edad, posición, nacionalidad, número de camiseta, equipo, lesiones y rendimientos.
+Imprime el resultado de la operación en la consola.
+
+
+### Actualización de un jugador existente:
+
+Actualiza el jugador recién creado con nueva información.
+Modifica nombre, edad, posición, número de camiseta, y actualiza las referencias a lesiones y rendimientos.
+Imprime el resultado de la actualización en la consola.
+
+
+### Eliminación de un jugador:
+
+Elimina el jugador utilizando su ID.
+Imprime el resultado de la eliminación en la consola.
+
+
+### Limpieza:
+
+Llama al método destructor del objeto jugador para liberar recursos.
+
+
+
+## Retorno:
+La función no retorna un valor directamente, pero imprime en consola los resultados de cada operación:
+
+Para el registro: ID del jugador creado o un indicador de éxito.
+Para la actualización: Número de documentos actualizados (debería ser 1).
+Para la eliminación: Número de documentos eliminados (debería ser 1).
+
+## Manejo de Errores:
+
+La función caso2() está envuelta en un .catch() que captura y registra cualquier error en la consola.
+
+# Notas:
+
+Todas las operaciones son asíncronas y utilizan 'await' para manejar las promesas.
+Se asume que la clase 'jugador' tiene métodos para registrar, editar y eliminar jugadores.
+Los IDs utilizados son strings, lo que sugiere que podrían ser ObjectIds de MongoDB.
+Este código proporciona un ejemplo completo de cómo gestionar el ciclo de vida de un jugador en la base de datos.
+La estructura permite fácilmente probar cada operación CRUD de forma individual o en secuencia
