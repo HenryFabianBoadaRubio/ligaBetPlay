@@ -207,7 +207,7 @@ async function caso2() {
 caso2().catch(console.error);
 
 
-/*---------------------------------------------------------------- FIN DE USO 1 -----------------------------------------------------------------*/
+/*---------------------------------------------------------------- FIN DE USO 2 -----------------------------------------------------------------*/
 
 // let objEstadisticaEquipo = new estadistica_equipo();
 // console.log(await objEstadisticaEquipo.getAllTest());
