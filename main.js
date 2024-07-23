@@ -12,7 +12,7 @@ import { entrenamiento } from './js/modules/entrenamiento.js';
 import { equipamiento } from './js/modules/equipamiento.js';
 import { premio } from './js/modules/premio.js';
 import { estadistica_jugador } from './js/modules/estadistica_jugador.js';
-import { patrocinador } from './js/modules/patrocinador.js';
+import { PatrocinadorGestion } from './js/modules/patrocinador.js';
 import { estadistica_temporada } from './js/modules/estadistica_temporada.js';
 import { gol } from './js/modules/gol.js';
 import { jugador } from './js/modules/jugador.js';
@@ -289,16 +289,49 @@ async function caso9() {
     }
 }
 
-caso9().catch(console.error);
+// caso9().catch(console.error);
 
 
 /*---------------------------------------------------------------- FIN CASO DE USO 9 -----------------------------------------------------------------*/
 
 /*---------------------------------------------------------------- CASO DE USO 11 -----------------------------------------------------------------*/
 
-let objPatrocinador = new patrocinador();
-console.log(await objPatrocinador.getAllTest());
-objPatrocinador.destructor();
+
+async function caso11() {
+    const objPatrocinadorGestion = new PatrocinadorGestion();
+
+    try {
+        // Registrar un nuevo patrocinador
+        console.log(await objPatrocinadorGestion.registerSponsor({
+            _id: "60d5f49a9f1b2c6d88f7e47b",
+            nombre: "Coca Cola",
+            tipo: "Principal",
+            monto: 100000,
+            fechaInicio: 1672531200000, // Utilizando timestamp en milisegundos
+            fechaFin: 1703980800000 // Utilizando timestamp en milisegundos
+        }));
+
+        // Actualizar un patrocinador existente
+        // console.log(await objPatrocinadorGestion.updateSponsor("60d5f49a9f1b2c6d88f7e47b", {
+        //     nombre: "Coca Cola Actualizado",
+        //     tipo: "Secundario",
+        //     monto: 120000,
+        //     fechaInicio: 1672531200000, // Utilizando timestamp en milisegundos
+        //     fechaFin: 1703980800000 // Utilizando timestamp en milisegundos
+        // }));
+
+        // Eliminar un patrocinador existente
+        // console.log(await objPatrocinadorGestion.deleteSponsor("60d5f49a9f1b2c6d88f7e47b"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objPatrocinadorGestion.destructor();
+    }
+}
+
+caso11().catch(console.error);
+
 
 /*---------------------------------------------------------------- CASO DE USO 11 -----------------------------------------------------------------*/
 
