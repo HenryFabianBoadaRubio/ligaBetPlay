@@ -923,7 +923,7 @@ caso8().catch(console.error);
 > **Desarrollador:**  Sebastian Gutierrez
 > 
 
-> **Modulo:** arbitro
+> **Modulo:** estadio
 > 
 
 > **Usuario:** adminLigaBetPlay / adminLiga1234
@@ -1003,4 +1003,115 @@ async function caso9() {
 }
 
 caso9().catch(console.error);
+```
+
+# ______________________________________________________________________________________________
+
+
+### 11. Gestión de Patrocinios
+
+**Actor:** Administrador de la Liga **Descripción:** Permite registrar, editar y eliminar patrocinios de la liga y equipos. **Precondiciones:** El administrador debe estar autenticado. **Flujo Principal:**
+
+1. El administrador accede al módulo de gestión de patrocinios.
+2. El administrador selecciona la opción de agregar patrocinio.
+3. El administrador ingresa la información del patrocinio (empresa, monto, duración, etc.).
+4. El sistema guarda la información del patrocinio.
+5. El administrador puede editar o eliminar patrocinios existentes.
+
+> **Estado:**   Finalización
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** patrocinador
+> 
+
+> **Usuario:** adminLigaBetPlay / adminLiga1234
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay.
+
+**Link de conexion en mongo:** mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+
+### Función `caso11`
+
+- **Descripción**: Realiza operaciones CRUD en una colección de patrocinadores.
+- **Retorno**: `Promise<void>` - Una promesa que se resuelve cuando todas las operaciones se han completado.
+- **Errores**: Lanza un error si alguna de las operaciones falla.
+
+### Método `registerSponsor`
+
+- **Descripción**: Registra un nuevo patrocinador en la base de datos.
+- **Parámetros**:
+    - `patrocinador` (Object): Detalles del patrocinador.
+        - `_id` (string): ID único del patrocinador.
+        - `nombre` (string): Nombre del patrocinador.
+        - `tipo` (string): Tipo de patrocinador (e.g., Principal, Secundario).
+        - `monto` (number): Monto del patrocinio.
+        - `fechaInicio` (number): Fecha de inicio del patrocinio (timestamp en milisegundos).
+        - `fechaFin` (number): Fecha de fin del patrocinio (timestamp en milisegundos).
+- **Retorno**: `Promise<Object>` - Detalles del patrocinador registrado.
+
+### Método `updateSponsor`
+
+- **Descripción**: Actualiza la información de un patrocinador existente.
+- **Parámetros**:
+    - `id` (string): ID único del patrocinador a actualizar.
+    - `patrocinador` (Object): Nuevos detalles del patrocinador.
+        - `nombre` (string): Nuevo nombre del patrocinador.
+        - `tipo` (string): Nuevo tipo de patrocinador (e.g., Principal, Secundario).
+        - `monto` (number): Nuevo monto del patrocinio.
+        - `fechaInicio` (number): Nueva fecha de inicio del patrocinio (timestamp en milisegundos).
+        - `fechaFin` (number): Nueva fecha de fin del patrocinio (timestamp en milisegundos).
+- **Retorno**: `Promise<Object>` - Detalles del patrocinador actualizado.
+
+### Método `deleteSponsor`
+
+- **Descripción**: Elimina un patrocinador existente de la base de datos.
+- **Parámetros**:
+    - `id` (string): ID único del patrocinador a eliminar.
+- **Retorno**: `Promise<Object>` - Resultado de la operación de eliminación.
+
+### Método `destructor`
+
+- **Descripción**: Libera los recursos utilizados por `objPatrocinadorGestion`.
+
+```jsx
+async function caso11() {
+    const objPatrocinadorGestion = new PatrocinadorGestion();
+
+    try {
+        // Registrar un nuevo patrocinador
+        console.log(await objPatrocinadorGestion.registerSponsor({
+            _id: "60d5f49a9f1b2c6d88f7e47b",
+            nombre: "Coca Cola",
+            tipo: "Principal",
+            monto: 100000,
+            fechaInicio: 1672531200000, // Utilizando timestamp en milisegundos
+            fechaFin: 1703980800000 // Utilizando timestamp en milisegundos
+        }));
+
+        // Actualizar un patrocinador existente
+        console.log(await objPatrocinadorGestion.updateSponsor("60d5f49a9f1b2c6d88f7e47b", {
+            nombre: "Coca Cola Actualizado",
+            tipo: "Secundario",
+            monto: 120000,
+            fechaInicio: 1672531200000, // Utilizando timestamp en milisegundos
+            fechaFin: 1703980800000 // Utilizando timestamp en milisegundos
+        }));
+
+        // Eliminar un patrocinador existente
+        console.log(await objPatrocinadorGestion.deleteSponsor("60d5f49a9f1b2c6d88f7e47b"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objPatrocinadorGestion.destructor();
+    }
+}
+
+caso11().catch(console.error);
+
 ```
