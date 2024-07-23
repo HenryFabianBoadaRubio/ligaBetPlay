@@ -796,3 +796,111 @@ Para llevar a cabo este caso de uso, se usará la conexión usando el usuario ad
 # **Exclusión de caso de uso:**
 
 La decisión de no implementar este caso de uso se basa en la eficiencia, la simplicidad y el aprovechamiento de las capacidades existentes del sistema. Los usuarios autorizados ya tienen las herramientas necesarias para acceder, filtrar y analizar las estadísticas directamente desde las colecciones de datos. Esta aproximación no solo ahorra recursos de desarrollo, sino que también ofrece mayor flexibilidad y sostenibilidad a largo plazo. El enfoque se centrará en mejorar la accesibilidad y usabilidad de las colecciones existentes, asegurando que los usuarios puedan obtener fácilmente la información estadística que necesitan sin la necesidad de una función adicional dedicada.
+
+
+# ______________________________________________________________________________________________
+
+### 8. Gestión de Árbitros
+
+**Actor:** Administrador de la Liga **Descripción:** Permite registrar, editar y eliminar árbitros para los partidos. **Precondiciones:** El administrador debe estar autenticado. **Flujo Principal:**
+
+1. El administrador accede al módulo de gestión de árbitros.
+2. El administrador selecciona la opción de agregar árbitro.
+3. El administrador ingresa la información del árbitro (nombre, experiencia, etc.).
+4. El sistema guarda la información del árbitro.
+5. El administrador puede editar o eliminar árbitros existentes.
+
+> **Estado:**   Finalización
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** arbitro
+> 
+
+> **Usuario:** adminLigaBetPlay / adminLiga1234
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay.
+
+**Link de conexion en mongo:** mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+### Función `caso8`
+
+- **Descripción**: Realiza operaciones CRUD en una colección de árbitros.
+- **Retorno**: `Promise<void>` - Una promesa que se resuelve cuando todas las operaciones se han completado.
+- **Errores**: Lanza un error si alguna de las operaciones falla.
+
+### Método `registerReferee`
+
+- **Descripción**: Registra un nuevo árbitro en la base de datos.
+- **Parámetros**:
+    - `árbitro` (Object): Detalles del árbitro.
+        - `_id` (string): ID único del árbitro.
+        - `id` (string): ID de referencia del árbitro.
+        - `nombre` (string): Nombre del árbitro.
+        - `edad` (number): Edad del árbitro.
+        - `nacionalidad` (string): Nacionalidad del árbitro.
+        - `experiencia` (number): Años de experiencia del árbitro.
+        - `especialidad` (string): Especialidad del árbitro.
+- **Retorno**: `Promise<Object>` - Detalles del árbitro registrado.
+
+### Método `updateReferee`
+
+- **Descripción**: Actualiza la información de un árbitro existente.
+- **Parámetros**:
+    - `id` (string): ID único del árbitro a actualizar.
+    - `árbitro` (Object): Nuevos detalles del árbitro.
+        - `nombre` (string): Nuevo nombre del árbitro.
+        - `edad` (number): Nueva edad del árbitro.
+        - `experiencia` (number): Nuevos años de experiencia del árbitro.
+        - `especialidad` (string): Nueva especialidad del árbitro.
+- **Retorno**: `Promise<Object>` - Detalles del árbitro actualizado.
+
+### Método `deleteReferee`
+
+- **Descripción**: Elimina un árbitro existente de la base de datos.
+- **Parámetros**:
+    - `id` (string): ID único del árbitro a eliminar.
+- **Retorno**: `Promise<Object>` - Resultado de la operación de eliminación.
+
+### Método `destructor`
+
+- **Descripción**: Libera los recursos utilizados por `objArbitroGestion`.
+
+```jsx
+async function caso8() {
+    const objArbitroGestion = new ArbitroGestion();
+
+    try {
+        // Registrar un nuevo árbitro
+        console.log(await objArbitroGestion.registerReferee({
+            _id: "669994d756837c8431e99f4b",
+            id: "60f94f08b6a33a4d26aa3cc6",
+            nombre: "Juan Martínez",
+            edad: 42,
+            nacionalidad: "Colombiana",
+            experiencia: 15,
+            especialidad: "Árbitro principal"
+        }));
+
+        // Actualizar un árbitro existente
+        console.log(await objArbitroGestion.updateReferee("669994d756837c8431e99f4b", {
+            nombre: "Juan Martínez Actualizado",
+            edad: 43,
+            experiencia: 16,
+            especialidad: "Árbitro asistente"
+        }));
+
+        // Eliminar un árbitro existente
+        console.log(await objArbitroGestion.deleteReferee("669994d756837c8431e99f4b"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objArbitroGestion.destructor();
+    }
+}
+caso8().catch(console.error);
+```
