@@ -13,9 +13,14 @@ export class estadistica_equipo extends connect {
         this.collection = this.db.collection('estadistica_equipo');
         estadistica_equipo.instanceEstadistica_equipo = this;
     }
+    /**
+     * Método destructor para liberar recursos y evitar fugas de memoria.
+     * Borra las referencias estáticas de instancia tanto de la clase actual como de la clase padre (connect).
+     *
+     * @returns {void}
+     */
     destructor(){
         estadistica_equipo.instanceEstadistica_equipo = undefined;
         connect.instanceConnect = undefined;
     }
-
 }
