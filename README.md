@@ -15,6 +15,226 @@ El sistema de gestión propuesto debe abordar las siguientes necesidades:
 9. **Gestión de Usuarios y Roles:** El sistema debe gestionar los usuarios que acceden al sistema, asignando roles y permisos específicos según su función (administradores, entrenadores, jugadores, periodistas, aficionados).
 10. **Seguridad y Acceso:** Debe garantizar la seguridad de la información y el acceso controlado mediante autenticación de usuarios y gestión de permisos.
 
+### **1. Gestión de Equipos**
+
+**Actor:** Administrador de la Liga
+**Descripción:** El administrador puede agregar, editar y eliminar equipos de la liga.
+**Precondiciones:** El administrador debe estar autenticado.
+**Flujo Principal:**
+
+1. El administrador accede al módulo de gestión de equipos.
+2. El administrador selecciona la opción de agregar equipo.
+3. El administrador ingresa la información del equipo (nombre, estadio, ciudad, etc.).
+4. El sistema guarda la información del equipo.
+5. El administrador puede editar o eliminar equipos existentes.
+
+> **Estado:**   Finalizado.
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** equipo
+> 
+
+> **Usuario:** adminLigaBetPlay / adminLiga1234
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay.
+
+**Link de conexion en mongo:** mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+
+# Módulo: Gestión de Equipos
+
+### Descripción:
+Este módulo demuestra las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para la gestión de equipos en una base de datos.
+
+Función: caso1()
+
+### Descripción:
+Función asíncrona que ejecuta una serie de operaciones de gestión de equipos como ejemplo de uso de la clase 'equipo'.
+
+### Ejecución:
+1. Creación de un nuevo equipo:
+   - Crea una instancia de la clase 'equipo'.
+   - Registra un nuevo equipo con datos específicos, incluyendo ID, nombre, ciudad, y referencias a estadio, entrenador, jugadores y partidos.
+   - Imprime el resultado de la operación en la consola.
+
+2. Actualización de un equipo existente:
+   - Actualiza el equipo recién creado con nueva información.
+   - Modifica nombre, referencias a estadio, entrenador, jugadores y partidos.
+   - Imprime el resultado de la actualización en la consola.
+
+3. Eliminación de un equipo:
+   - Elimina el equipo utilizando su ID.
+   - Imprime el resultado de la eliminación en la consola.
+
+4. Limpieza:
+   - Llama al método destructor del objeto equipo para liberar recursos.
+
+### Retorno:
+La función no retorna un valor directamente, pero imprime en consola los resultados de cada operación:
+- Para el registro: ID del equipo creado o un indicador de éxito.
+- Para la actualización: Número de documentos actualizados (debería ser 1).
+- Para la eliminación: Número de documentos eliminados (debería ser 1).
+
+## Notas:
+- Todas las operaciones son asíncronas y utilizan 'await' para manejar las promesas.
+- Se asume que la clase 'equipo' tiene métodos para registrar, actualizar y eliminar equipos.
+- Los IDs utilizados son strings, lo que sugiere que podrían ser ObjectIds de MongoDB.
+- El manejo de errores no está explícito en esta función y debería ser implementado en un entorno de producción.
+
+```js
+// 1. Gestion de equipos
+async function caso1(){
+
+let objEquipo = new equipo();
+
+// Registrar un nuevo equipo con un ID específico
+console.log(await objEquipo.registerTeam({
+    _id: "60d5f49a9f1b2c6d88f7e46b",
+    nombre: "Caterpilar motors",
+    ciudad: "Bogotá",
+    id_estadio: "669993fb56837c8431e99e0f",
+    id_entrenador: "669993a956837c8431e99dc0",
+    id_jugadores: [
+        "6699942656837c8431e99e5f",
+        "6699942656837c8431e99e60",
+        "6699942656837c8431e99e61"
+    ],
+    id_partido: [
+        "6699944056837c8431e99e86",
+        "6699944056837c8431e99e87"
+    ]
+}));
+
+// Actualizar un equipo existente
+console.log(await objEquipo.updateTeam("60d5f49a9f1b2c6d88f7e46b", {
+    nombre: "Caterpilar motors Actualizacion",
+    ciudad: "Bogotá",
+    id_estadio: "5f6a6dcd3b23a1c35d5e8b15",
+    id_entrenador: "5f6a6dcd3b23a1c35d5e8b25",
+    id_jugadores: [
+        "5f6a6dcd3b23a1c35d5e8c05",
+        "5f6a6dcd3b23a1c35d5e8c06"
+    ],
+    id_partido: [
+        "5f6a6dcd3b23a1c35d5e8d03"
+    ]
+}));
+
+// Eliminar un equipo existente
+console.log(await objEquipo.deleteTeam("60d5f49a9f1b2c6d88f7e46b"));
+
+objEquipo.destructor();
+}
+caso1()
+```
+
+### **2. Gestión de Jugadores**
+
+**Actor:** Administrador de la Liga, Equipo Técnico
+**Descripción:** Permite registrar, editar y eliminar jugadores de los equipos.
+**Precondiciones:** El actor debe estar autenticado.
+**Flujo Principal:**
+
+1. El actor accede al módulo de gestión de jugadores.
+2. El actor selecciona la opción de agregar jugador.
+3. El actor ingresa la información del jugador (nombre, edad, posición, etc.).
+4. El sistema guarda la información del jugador.
+5. El actor puede editar o eliminar jugadores existentes.
+
+> **Estado:**   Finalizado
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** jugador
+> 
+
+> **Usuario:** (adminLigaBetPlay / adminLiga1234) & / (equipoTecnicoLigaBetPlay / equipoTecnico1234)
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay y el usuario equipoTecnicoLigaBetPLay:
+
+**Link de conexion en mongo:** 
+
+- mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+- mongodb://equipoTecnicoLigaBetPlay:equipoTecnico1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+En la implementación de este caso de uso, se consideraron los siguientes aspectos:
+
+1. Validación de existencia: Se verifica si el jugador ya existe en el sistema.
+2. Gestión de jugador:
+    - Registro: Si el jugador no existe, se permite su creación.
+    - Edición: Se facilita la modificación de datos de jugadores existentes.
+    - Eliminación: Se ofrece la opción de eliminar jugadores del sistema.
+3. Interacción con el usuario: Las operaciones se realizan según las necesidades y preferencias del usuario que ejecuta el caso de uso.
+
+Este enfoque asegura una gestión integral de jugadores, permitiendo un control eficiente y adaptado a los requerimientos del usuario.
+
+
+# Módulo: Gestión de Jugadores
+
+## Descripción:
+
+Este módulo demuestra las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para la gestión de jugadores en una base de datos.
+Función: caso2()
+
+## Descripción:
+Función asíncrona que ejecuta una serie de operaciones de gestión de jugadores como ejemplo de uso de la clase 'jugador'.
+
+## Ejecución:
+
+### Creación de un nuevo jugador:
+
+Crea una instancia de la clase 'jugador'.
+Registra un nuevo jugador (Lautaro Martinez) con datos específicos, incluyendo ID, nombre, edad, posición, nacionalidad, número de camiseta, equipo, lesiones y rendimientos.
+Imprime el resultado de la operación en la consola.
+
+
+### Actualización de un jugador existente:
+
+Actualiza el jugador recién creado con nueva información.
+Modifica nombre, edad, posición, número de camiseta, y actualiza las referencias a lesiones y rendimientos.
+Imprime el resultado de la actualización en la consola.
+
+
+### Eliminación de un jugador:
+
+Elimina el jugador utilizando su ID.
+Imprime el resultado de la eliminación en la consola.
+
+
+### Limpieza:
+
+Llama al método destructor del objeto jugador para liberar recursos.
+
+
+
+## Retorno:
+La función no retorna un valor directamente, pero imprime en consola los resultados de cada operación:
+
+Para el registro: ID del jugador creado o un indicador de éxito.
+Para la actualización: Número de documentos actualizados (debería ser 1).
+Para la eliminación: Número de documentos eliminados (debería ser 1).
+
+## Manejo de Errores:
+
+La función caso2() está envuelta en un .catch() que captura y registra cualquier error en la consola.
+
+# Notas:
+
+Todas las operaciones son asíncronas y utilizan 'await' para manejar las promesas.
+Se asume que la clase 'jugador' tiene métodos para registrar, editar y eliminar jugadores.
+Los IDs utilizados son strings, lo que sugiere que podrían ser ObjectIds de MongoDB.
+Este código proporciona un ejemplo completo de cómo gestionar el ciclo de vida de un jugador en la base de datos.
+La estructura permite fácilmente probar cada operación CRUD de forma individual o en secuencia
+
+
+
 ## Caso de uso 3: Programación de Partidos
 
 ### registerGame():
@@ -108,6 +328,43 @@ const data={
 
 console.log(await objPartido.updateGame("669c2a22d7decd9de823f786",data));
 ```
+
+### 5. Visualización de Estadísticas
+
+**Actor:** Aficionado, Periodista, Equipo Técnico
+**Descripción:** Permite visualizar estadísticas de jugadores, equipos y partidos.
+**Precondiciones:** El usuario debe estar autenticado (para ciertos datos).
+**Flujo Principal:**
+
+1. El usuario accede al módulo de estadísticas.
+2. El usuario selecciona el tipo de estadísticas que desea visualizar (por jugador, equipo, temporada).
+3. El sistema muestra las estadísticas solicitadas.
+4. El usuario puede filtrar y ordenar las estadísticas según diferentes criterios.
+
+> **Estado:**   Finalización
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** estadistica_jugador, estadistica_equipo, estadistica_temporada, estadistica_partido
+> 
+
+> **Usuario:** (aficionadoLigaBetPlay / aficionado1234) & (periodistaLigaBetPlay / periodista1234) & (equipoTecnicoLigaBetPlay / equipoTecnico1234)
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay, el usuario equipoTecnicoLigaBetPLay y el usuario periodistaLigaBetPlay
+
+**Link de conexion en mongo:**
+
+- mongodb://equipoTecnicoLigaBetPlay:equipoTecnico1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+- mongodb://aficionadoLigaBetPlay:aficionado1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+- mongodb://periodistaLigaBetPlay:periodista1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+
+# **Exclusión de caso de uso:**
+
+La decisión de no implementar este caso de uso se basa en la eficiencia, la simplicidad y el aprovechamiento de las capacidades existentes del sistema. Los usuarios autorizados ya tienen las herramientas necesarias para acceder, filtrar y analizar las estadísticas directamente desde las colecciones de datos. Esta aproximación no solo ahorra recursos de desarrollo, sino que también ofrece mayor flexibilidad y sostenibilidad a largo plazo. El enfoque se centrará en mejorar la accesibilidad y usabilidad de las colecciones existentes, asegurando que los usuarios puedan obtener fácilmente la información estadística que necesitan sin la necesidad de una función adicional dedicada.
 
 
 
@@ -338,7 +595,317 @@ La función retorna una promesa que resuelve con un objeto que contiene:
      }))
   ```
 
-  
+  ### 8. Gestión de Árbitros
+
+**Actor:** Administrador de la Liga **Descripción:** Permite registrar, editar y eliminar árbitros para los partidos. **Precondiciones:** El administrador debe estar autenticado. **Flujo Principal:**
+
+1. El administrador accede al módulo de gestión de árbitros.
+2. El administrador selecciona la opción de agregar árbitro.
+3. El administrador ingresa la información del árbitro (nombre, experiencia, etc.).
+4. El sistema guarda la información del árbitro.
+5. El administrador puede editar o eliminar árbitros existentes.
+
+> **Estado:**   Finalización
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** arbitro
+> 
+
+> **Usuario:** adminLigaBetPlay / adminLiga1234
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay.
+
+**Link de conexion en mongo:** mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+### Función `caso8`
+
+- **Descripción**: Realiza operaciones CRUD en una colección de árbitros.
+- **Retorno**: `Promise<void>` - Una promesa que se resuelve cuando todas las operaciones se han completado.
+- **Errores**: Lanza un error si alguna de las operaciones falla.
+
+### Método `registerReferee`
+
+- **Descripción**: Registra un nuevo árbitro en la base de datos.
+- **Parámetros**:
+    - `árbitro` (Object): Detalles del árbitro.
+        - `_id` (string): ID único del árbitro.
+        - `id` (string): ID de referencia del árbitro.
+        - `nombre` (string): Nombre del árbitro.
+        - `edad` (number): Edad del árbitro.
+        - `nacionalidad` (string): Nacionalidad del árbitro.
+        - `experiencia` (number): Años de experiencia del árbitro.
+        - `especialidad` (string): Especialidad del árbitro.
+- **Retorno**: `Promise<Object>` - Detalles del árbitro registrado.
+
+### Método `updateReferee`
+
+- **Descripción**: Actualiza la información de un árbitro existente.
+- **Parámetros**:
+    - `id` (string): ID único del árbitro a actualizar.
+    - `árbitro` (Object): Nuevos detalles del árbitro.
+        - `nombre` (string): Nuevo nombre del árbitro.
+        - `edad` (number): Nueva edad del árbitro.
+        - `experiencia` (number): Nuevos años de experiencia del árbitro.
+        - `especialidad` (string): Nueva especialidad del árbitro.
+- **Retorno**: `Promise<Object>` - Detalles del árbitro actualizado.
+
+### Método `deleteReferee`
+
+- **Descripción**: Elimina un árbitro existente de la base de datos.
+- **Parámetros**:
+    - `id` (string): ID único del árbitro a eliminar.
+- **Retorno**: `Promise<Object>` - Resultado de la operación de eliminación.
+
+### Método `destructor`
+
+- **Descripción**: Libera los recursos utilizados por `objArbitroGestion`.
+
+```jsx
+async function caso8() {
+    const objArbitroGestion = new ArbitroGestion();
+
+    try {
+        // Registrar un nuevo árbitro
+        console.log(await objArbitroGestion.registerReferee({
+            _id: "669994d756837c8431e99f4b",
+            id: "60f94f08b6a33a4d26aa3cc6",
+            nombre: "Juan Martínez",
+            edad: 42,
+            nacionalidad: "Colombiana",
+            experiencia: 15,
+            especialidad: "Árbitro principal"
+        }));
+
+        // Actualizar un árbitro existente
+        console.log(await objArbitroGestion.updateReferee("669994d756837c8431e99f4b", {
+            nombre: "Juan Martínez Actualizado",
+            edad: 43,
+            experiencia: 16,
+            especialidad: "Árbitro asistente"
+        }));
+
+        // Eliminar un árbitro existente
+        console.log(await objArbitroGestion.deleteReferee("669994d756837c8431e99f4b"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objArbitroGestion.destructor();
+    }
+}
+caso8().catch(console.error);
+```
+### 9. Gestión de Estadios
+
+**Actor:** Administrador de la Liga **Descripción:** Permite registrar, editar y eliminar estadios donde se jugarán los partidos. **Precondiciones:** El administrador debe estar autenticado. **Flujo Principal:**
+
+1. El administrador accede al módulo de gestión de estadios.
+2. El administrador selecciona la opción de agregar estadio.
+3. El administrador ingresa la información del estadio (nombre, capacidad, ubicación, etc.).
+4. El sistema guarda la información del estadio.
+5. El administrador puede editar o eliminar estadios existentes.
+
+> **Estado:**   Finalización
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** estadio
+> 
+
+> **Usuario:** adminLigaBetPlay / adminLiga1234
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay.
+
+**Link de conexion en mongo:** mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+### Función `caso9`
+
+- **Descripción**: Realiza operaciones CRUD en una colección de estadios.
+- **Retorno**: `Promise<void>` - Una promesa que se resuelve cuando todas las operaciones se han completado.
+- **Errores**: Lanza un error si alguna de las operaciones falla.
+
+### Método `registerStadium`
+
+- **Descripción**: Registra un nuevo estadio en la base de datos.
+- **Parámetros**:
+    - `estadio` (Object): Detalles del estadio.
+        - `_id` (string): ID único del estadio.
+        - `nombre` (string): Nombre del estadio.
+        - `ubicacion` (string): Ubicación del estadio.
+        - `capacidad` (number): Capacidad del estadio.
+- **Retorno**: `Promise<Object>` - Detalles del estadio registrado.
+
+### Método `updateStadium`
+
+- **Descripción**: Actualiza la información de un estadio existente.
+- **Parámetros**:
+    - `id` (string): ID único del estadio a actualizar.
+    - `estadio` (Object): Nuevos detalles del estadio.
+        - `nombre` (string): Nuevo nombre del estadio.
+        - `ubicacion` (string): Nueva ubicación del estadio.
+        - `capacidad` (number): Nueva capacidad del estadio.
+- **Retorno**: `Promise<Object>` - Detalles del estadio actualizado.
+
+### Método `deleteStadium`
+
+- **Descripción**: Elimina un estadio existente de la base de datos.
+- **Parámetros**:
+    - `id` (string): ID único del estadio a eliminar.
+- **Retorno**: `Promise<Object>` - Resultado de la operación de eliminación.
+
+### Método `destructor`
+
+- **Descripción**: Libera los recursos utilizados por `objEstadioGestion`.
+
+```jsx
+async function caso9() {
+    const objEstadioGestion = new EstadioGestion();
+
+    try {
+        // Registrar un nuevo estadio
+        console.log(await objEstadioGestion.registerStadium({
+            _id: "60d5f49a9f1b2c6d88f7e47c",
+            nombre: "Estadio El Campín",
+            ubicacion: "Bogotá",
+            capacidad: 50000
+        }));
+
+        // Actualizar un estadio existente
+        console.log(await objEstadioGestion.updateStadium("60d5f49a9f1b2c6d88f7e47c", {
+            nombre: "Estadio El Campín Modificado",
+            ubicacion: "Bogotá",
+            capacidad: 55000
+        }));
+
+        // Eliminar un estadio existente
+        console.log(await objEstadioGestion.deleteStadium("60d5f49a9f1b2c6d88f7e47c"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objEstadioGestion.destructor();
+    }
+}
+
+caso9().catch(console.error);
+```
+
+### 11. Gestión de Patrocinios
+
+**Actor:** Administrador de la Liga **Descripción:** Permite registrar, editar y eliminar patrocinios de la liga y equipos. **Precondiciones:** El administrador debe estar autenticado. **Flujo Principal:**
+
+1. El administrador accede al módulo de gestión de patrocinios.
+2. El administrador selecciona la opción de agregar patrocinio.
+3. El administrador ingresa la información del patrocinio (empresa, monto, duración, etc.).
+4. El sistema guarda la información del patrocinio.
+5. El administrador puede editar o eliminar patrocinios existentes.
+
+> **Estado:**   Finalización
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** patrocinador
+> 
+
+> **Usuario:** adminLigaBetPlay / adminLiga1234
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay.
+
+**Link de conexion en mongo:** mongodb://admminLigaBetPlay:adminLiga1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+
+### Función `caso11`
+
+- **Descripción**: Realiza operaciones CRUD en una colección de patrocinadores.
+- **Retorno**: `Promise<void>` - Una promesa que se resuelve cuando todas las operaciones se han completado.
+- **Errores**: Lanza un error si alguna de las operaciones falla.
+
+### Método `registerSponsor`
+
+- **Descripción**: Registra un nuevo patrocinador en la base de datos.
+- **Parámetros**:
+    - `patrocinador` (Object): Detalles del patrocinador.
+        - `_id` (string): ID único del patrocinador.
+        - `nombre` (string): Nombre del patrocinador.
+        - `tipo` (string): Tipo de patrocinador (e.g., Principal, Secundario).
+        - `monto` (number): Monto del patrocinio.
+        - `fechaInicio` (number): Fecha de inicio del patrocinio (timestamp en milisegundos).
+        - `fechaFin` (number): Fecha de fin del patrocinio (timestamp en milisegundos).
+- **Retorno**: `Promise<Object>` - Detalles del patrocinador registrado.
+
+### Método `updateSponsor`
+
+- **Descripción**: Actualiza la información de un patrocinador existente.
+- **Parámetros**:
+    - `id` (string): ID único del patrocinador a actualizar.
+    - `patrocinador` (Object): Nuevos detalles del patrocinador.
+        - `nombre` (string): Nuevo nombre del patrocinador.
+        - `tipo` (string): Nuevo tipo de patrocinador (e.g., Principal, Secundario).
+        - `monto` (number): Nuevo monto del patrocinio.
+        - `fechaInicio` (number): Nueva fecha de inicio del patrocinio (timestamp en milisegundos).
+        - `fechaFin` (number): Nueva fecha de fin del patrocinio (timestamp en milisegundos).
+- **Retorno**: `Promise<Object>` - Detalles del patrocinador actualizado.
+
+### Método `deleteSponsor`
+
+- **Descripción**: Elimina un patrocinador existente de la base de datos.
+- **Parámetros**:
+    - `id` (string): ID único del patrocinador a eliminar.
+- **Retorno**: `Promise<Object>` - Resultado de la operación de eliminación.
+
+### Método `destructor`
+
+- **Descripción**: Libera los recursos utilizados por `objPatrocinadorGestion`.
+
+```jsx
+async function caso11() {
+    const objPatrocinadorGestion = new PatrocinadorGestion();
+
+    try {
+        // Registrar un nuevo patrocinador
+        console.log(await objPatrocinadorGestion.registerSponsor({
+            _id: "60d5f49a9f1b2c6d88f7e47b",
+            nombre: "Coca Cola",
+            tipo: "Principal",
+            monto: 100000,
+            fechaInicio: 1672531200000, // Utilizando timestamp en milisegundos
+            fechaFin: 1703980800000 // Utilizando timestamp en milisegundos
+        }));
+
+        // Actualizar un patrocinador existente
+        console.log(await objPatrocinadorGestion.updateSponsor("60d5f49a9f1b2c6d88f7e47b", {
+            nombre: "Coca Cola Actualizado",
+            tipo: "Secundario",
+            monto: 120000,
+            fechaInicio: 1672531200000, // Utilizando timestamp en milisegundos
+            fechaFin: 1703980800000 // Utilizando timestamp en milisegundos
+        }));
+
+        // Eliminar un patrocinador existente
+        console.log(await objPatrocinadorGestion.deleteSponsor("60d5f49a9f1b2c6d88f7e47b"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objPatrocinadorGestion.destructor();
+    }
+}
+
+caso11().catch(console.error);
+
+```
+
+
 
 ## Caso de uso 20: Gestión de Equipamiento
 
@@ -634,4 +1201,5 @@ console.log(await objPatrocinador.updateSponsor("6699944b56837c8431e99ea6",
     fechaFin:"2024-08-15"
 }));
 ```
+
 

@@ -13,14 +13,14 @@ export class estadistica_partido extends connect {
         this.collection = this.db.collection('estadistica_partido');
         estadistica_partido.instanceEstadistica_partido = this;
     }
+    /**
+    * Método destructor para liberar recursos y evitar fugas de memoria.
+    * Este método borra las referencias estáticas de instancia tanto de la clase actual como de la clase padre (connect).
+    *
+    * @returns {void}
+    */
     destructor(){
         estadistica_partido.instanceEstadistica_partido = undefined;
         connect.instanceConnect = undefined;
-    }
-    async getAllTest() {
-        await this.conexion.connect();
-        const res = await this.collection.find({}).toArray(); 
-        await this.conexion.close();
-        return res;
     }
 }
