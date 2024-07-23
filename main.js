@@ -41,10 +41,6 @@ import { partido } from './js/modules/partido.js';
 // console.log(await objSancion.getAllTest());
 // objSancion.destructor();
 
-// let objEstadisticaPartido = new estadistica_partido();
-// console.log(await objEstadisticaPartido.getAllTest());
-// objEstadisticaPartido.destructor();
-
 // let objEntrada = new entrada();
 // console.log(await objEntrada.getAllTest());
 // objEntrada.destructor();
@@ -77,17 +73,10 @@ import { partido } from './js/modules/partido.js';
 // console.log(await objPremio.getAllTest());
 // objPremio.destructor();
 
-// let objEstadisticaJugador = new estadistica_jugador();
-// console.log(await objEstadisticaJugador.getAllTest());
-// objEstadisticaJugador.destructor();
 
 // let objPatrocinador = new patrocinador();
 // console.log(await objPatrocinador.getAllTest());
 // objPatrocinador.destructor();
-
-// let objEstadisticaTemporada = new estadistica_temporada();
-// console.log(await objEstadisticaTemporada.getAllTest());
-// objEstadisticaTemporada.destructor();
 
 // let objGol = new gol();
 // console.log(await objGol.getAllTest());
@@ -209,9 +198,32 @@ caso2().catch(console.error);
 
 /*---------------------------------------------------------------- FIN DE USO 2 -----------------------------------------------------------------*/
 
-// let objEstadisticaEquipo = new estadistica_equipo();
-// console.log(await objEstadisticaEquipo.getAllTest());
-// objEstadisticaEquipo.destructor();
+
+/*---------------------------------------------------------------- CASO DE USO 5 -----------------------------------------------------------------*/
+
+
+
+let objEstadisticaEquipo = new estadistica_equipo();
+console.log(await objEstadisticaEquipo.getAllTest());
+objEstadisticaEquipo.destructor();
+
+
+let objEstadisticaTemporada = new estadistica_temporada();
+console.log(await objEstadisticaTemporada.getAllTest());
+objEstadisticaTemporada.destructor();
+
+
+let objEstadisticaPartido = new estadistica_partido();
+console.log(await objEstadisticaPartido.getAllTest());
+objEstadisticaPartido.destructor();
+
+let objEstadisticaJugador = new estadistica_jugador();
+console.log(await objEstadisticaJugador.getAllTest());
+objEstadisticaJugador.destructor();
+
+
+/*---------------------------------------------------------------- FIN CASO DE USO 5 -----------------------------------------------------------------*/
+
 
 // let objTemporada = new temporada();
 // console.log(await objTemporada.getAllTest());
