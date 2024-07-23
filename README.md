@@ -533,6 +533,9 @@ El sistema de gestión propuesto debe abordar las siguientes necesidades:
 - **Entrada** está relacionada con **Partido** y **Usuario**.
 - **Estadio** tiene una lista de **Partidos**.
 
+
+# ___________________________________________________________________________________________________
+
 # Documentacion LigaBetPlay
 
 ### **1. Gestión de Equipos**
@@ -652,6 +655,7 @@ objEquipo.destructor();
 caso1()
 ```
 
+# ___________________________________________________________________________________________________
 
 ### **2. Gestión de Jugadores**
 
@@ -753,3 +757,42 @@ Se asume que la clase 'jugador' tiene métodos para registrar, editar y eliminar
 Los IDs utilizados son strings, lo que sugiere que podrían ser ObjectIds de MongoDB.
 Este código proporciona un ejemplo completo de cómo gestionar el ciclo de vida de un jugador en la base de datos.
 La estructura permite fácilmente probar cada operación CRUD de forma individual o en secuencia
+
+# ___________________________________________________________________________________________________
+
+### 5. Visualización de Estadísticas
+
+**Actor:** Aficionado, Periodista, Equipo Técnico
+**Descripción:** Permite visualizar estadísticas de jugadores, equipos y partidos.
+**Precondiciones:** El usuario debe estar autenticado (para ciertos datos).
+**Flujo Principal:**
+
+1. El usuario accede al módulo de estadísticas.
+2. El usuario selecciona el tipo de estadísticas que desea visualizar (por jugador, equipo, temporada).
+3. El sistema muestra las estadísticas solicitadas.
+4. El usuario puede filtrar y ordenar las estadísticas según diferentes criterios.
+
+> **Estado:**   Finalización
+> 
+
+> **Desarrollador:**  Sebastian Gutierrez
+> 
+
+> **Modulo:** estadistica_jugador, estadistica_equipo, estadistica_temporada, estadistica_partido
+> 
+
+> **Usuario:** (aficionadoLigaBetPlay / aficionado1234) & (periodistaLigaBetPlay / periodista1234) & (equipoTecnicoLigaBetPlay / equipoTecnico1234)
+> 
+
+Para llevar a cabo este caso de uso, se usará la conexión usando el usuario adminLigaBetPlay, el usuario equipoTecnicoLigaBetPLay y el usuario periodistaLigaBetPlay
+
+**Link de conexion en mongo:**
+
+- mongodb://equipoTecnicoLigaBetPlay:equipoTecnico1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+- mongodb://aficionadoLigaBetPlay:aficionado1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+- mongodb://periodistaLigaBetPlay:periodista1234@monorail.proxy.rlwy.net:28671/ligaBetPlay
+
+
+# **Exclusión de caso de uso:**
+
+La decisión de no implementar este caso de uso se basa en la eficiencia, la simplicidad y el aprovechamiento de las capacidades existentes del sistema. Los usuarios autorizados ya tienen las herramientas necesarias para acceder, filtrar y analizar las estadísticas directamente desde las colecciones de datos. Esta aproximación no solo ahorra recursos de desarrollo, sino que también ofrece mayor flexibilidad y sostenibilidad a largo plazo. El enfoque se centrará en mejorar la accesibilidad y usabilidad de las colecciones existentes, asegurando que los usuarios puedan obtener fácilmente la información estadística que necesitan sin la necesidad de una función adicional dedicada.
