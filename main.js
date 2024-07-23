@@ -18,7 +18,9 @@ import { gol } from './js/modules/gol.js';
 import { jugador } from './js/modules/jugador.js';
 // import { usuario } from './js/modules/usuario.js';
 import { calendario } from './js/modules/calendario.js';
-import { arbitro } from './js/modules/arbitro.js';
+import { 
+    // arbitro, 
+    ArbitroGestion } from './js/modules/arbitro.js';
 import { comunicacion } from './js/modules/comunicacion.js';
 import { equipo } from './js/modules/equipo.js';
 import { estadistica_equipo } from './js/modules/estadistica_equipo.js';
@@ -40,6 +42,7 @@ import { partido } from './js/modules/partido.js';
 // let objSancion = new sancion();
 // console.log(await objSancion.getAllTest());
 // objSancion.destructor();
+
 
 // let objEntrada = new entrada();
 // console.log(await objEntrada.getAllTest());
@@ -190,7 +193,7 @@ async function caso2() {
   objJugador.destructor();
 }
 
-caso2().catch(console.error);
+// caso2().catch(console.error);
 
 
 /*---------------------------------------------------------------- FIN DE USO 2 -----------------------------------------------------------------*/
@@ -200,23 +203,23 @@ caso2().catch(console.error);
 
 
 
-let objEstadisticaEquipo = new estadistica_equipo();
-console.log(await objEstadisticaEquipo.getAllTest());
-objEstadisticaEquipo.destructor();
+// let objEstadisticaEquipo = new estadistica_equipo();
+// console.log(await objEstadisticaEquipo.getAllTest());
+// objEstadisticaEquipo.destructor();
 
 
-let objEstadisticaTemporada = new estadistica_temporada();
-console.log(await objEstadisticaTemporada.getAllTest());
-objEstadisticaTemporada.destructor();
+// let objEstadisticaTemporada = new estadistica_temporada();
+// console.log(await objEstadisticaTemporada.getAllTest());
+// objEstadisticaTemporada.destructor();
 
 
-let objEstadisticaPartido = new estadistica_partido();
-console.log(await objEstadisticaPartido.getAllTest());
-objEstadisticaPartido.destructor();
+// let objEstadisticaPartido = new estadistica_partido();
+// console.log(await objEstadisticaPartido.getAllTest());
+// objEstadisticaPartido.destructor();
 
-let objEstadisticaJugador = new estadistica_jugador();
-console.log(await objEstadisticaJugador.getAllTest());
-objEstadisticaJugador.destructor();
+// let objEstadisticaJugador = new estadistica_jugador();
+// console.log(await objEstadisticaJugador.getAllTest());
+// objEstadisticaJugador.destructor();
 
 
 /*---------------------------------------------------------------- FIN CASO DE USO 5 -----------------------------------------------------------------*/
@@ -224,11 +227,39 @@ objEstadisticaJugador.destructor();
 /*---------------------------------------------------------------- CASO DE USO 8 ---------------------------------------------------------------------*/
 
 
-let objArbitro = new arbitro();
-console.log(await objArbitro.getAllTest());
-objArbitro.destructor();
+async function caso8() {
+    const objArbitroGestion = new ArbitroGestion();
 
+    try {
+        // Registrar un nuevo árbitro
+        console.log(await objArbitroGestion.registerReferee({
+            _id: "669994d756837c8431e99f4b",
+            id: "60f94f08b6a33a4d26aa3cc6",
+            nombre: "Juan Martínez",
+            edad: 42,
+            nacionalidad: "Colombiana",
+            experiencia: 15,
+            especialidad: "Árbitro principal"
+        }));
 
+        // Actualizar un árbitro existente
+        // console.log(await objArbitroGestion.updateReferee("669994d756837c8431e99f4b", {
+        //     nombre: "Juan Martínez Actualizado",
+        //     edad: 43,
+        //     experiencia: 16,
+        //     especialidad: "Árbitro asistente"
+        // }));
+
+        // Eliminar un árbitro existente
+        // console.log(await objArbitroGestion.deleteReferee("669994d756837c8431e99f4b"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objArbitroGestion.destructor();
+    }
+}
+caso8().catch(console.error);
 
 /*---------------------------------------------------------------- FIN CASO DE USO 8 -----------------------------------------------------------------*/
 
