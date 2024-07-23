@@ -17,10 +17,5 @@ export class estadistica_equipo extends connect {
         estadistica_equipo.instanceEstadistica_equipo = undefined;
         connect.instanceConnect = undefined;
     }
-    async getAllTest() {
-        await this.conexion.connect();
-        const res = await this.collection.find({}).toArray(); 
-        await this.conexion.close();
-        return res;
-    }
+
 }
