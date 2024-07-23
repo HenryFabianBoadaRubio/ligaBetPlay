@@ -91,9 +91,6 @@ import { partido } from './js/modules/partido.js';
 // console.log(await objCalendario.getAllTest());
 // objCalendario.destructor();
 
-// let objArbitro = new arbitro();
-// console.log(await objArbitro.getAllTest());
-// objArbitro.destructor();
 
 // let objComunicacion = new comunicacion();
 // console.log(await objComunicacion.getAllTest());
@@ -223,6 +220,16 @@ objEstadisticaJugador.destructor();
 
 
 /*---------------------------------------------------------------- FIN CASO DE USO 5 -----------------------------------------------------------------*/
+
+/*---------------------------------------------------------------- CASO DE USO 8 ---------------------------------------------------------------------*/
+
+
+let objArbitro = new arbitro();
+console.log(await objArbitro.getAllTest());
+objArbitro.destructor();
+
+
+/*---------------------------------------------------------------- FIN CASO DE USO 8 -----------------------------------------------------------------*/
 
 
 // let objTemporada = new temporada();

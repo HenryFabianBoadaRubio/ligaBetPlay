@@ -1,5 +1,7 @@
 import { connect } from "../../helpers/db/connect.js";
 
+// 8. Gestion de arbitros
+
 export class arbitro extends connect {
     static instanceArbitro;
     db;
@@ -16,11 +18,5 @@ export class arbitro extends connect {
     destructor(){
         arbitro.instanceArbitro = undefined;
         connect.instanceConnect = undefined;
-    }
-    async getAllTest() {
-        await this.conexion.connect();
-        const res = await this.collection.find({}).toArray(); 
-        await this.conexion.close();
-        return res;
     }
 }
