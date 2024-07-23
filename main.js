@@ -5,7 +5,7 @@ import { sancion } from './js/modules/sancion.js';
 import { estadistica_partido } from './js/modules/estadistica_partido.js';
 import { entrada } from './js/modules/entrada.js';
 import { informe } from './js/modules/informe.js';
-import { estadio } from './js/modules/estadio.js';
+import { EstadioGestion } from './js/modules/estadio.js';
 // import { permiso } from './js/modules/permiso.js';
 import { entrenamiento } from './js/modules/entrenamiento.js';
 // import { rol } from './js/modules/rol.js';
@@ -52,9 +52,6 @@ import { partido } from './js/modules/partido.js';
 // console.log(await objInforme.getAllTest());
 // objInforme.destructor();
 
-// let objEstadio = new estadio();
-// console.log(await objEstadio.getAllTest());
-// objEstadio.destructor();
 
 // let objPermiso = new permiso();
 // console.log(await objPermiso.getAllTest());
@@ -259,9 +256,46 @@ async function caso8() {
         objArbitroGestion.destructor();
     }
 }
-caso8().catch(console.error);
+// caso8().catch(console.error);
 
 /*---------------------------------------------------------------- FIN CASO DE USO 8 -----------------------------------------------------------------*/
+
+
+/*---------------------------------------------------------------- CASO DE USO 9 -----------------------------------------------------------------*/
+
+async function caso9() {
+    const objEstadioGestion = new EstadioGestion();
+
+    try {
+        // Registrar un nuevo estadio
+        console.log(await objEstadioGestion.registerStadium({
+            _id: "60d5f49a9f1b2c6d88f7e47c",
+            nombre: "Estadio El Campín",
+            ubicacion: "Bogotá",
+            capacidad: 50000
+        }));
+
+        // Actualizar un estadio existente
+        // console.log(await objEstadioGestion.updateStadium("60d5f49a9f1b2c6d88f7e47c", {
+        //     nombre: "Estadio El Campín Modificado",
+        //     ubicacion: "Bogotá",
+        //     capacidad: 55000
+        // }));
+
+        // Eliminar un estadio existente
+        // console.log(await objEstadioGestion.deleteStadium("60d5f49a9f1b2c6d88f7e47c"));
+
+    } catch (error) {
+        console.error("Error en la operación:", error);
+    } finally {
+        objEstadioGestion.destructor();
+    }
+}
+
+caso9().catch(console.error);
+
+
+/*---------------------------------------------------------------- FIN CASO DE USO 9 -----------------------------------------------------------------*/
 
 
 // let objTemporada = new temporada();
