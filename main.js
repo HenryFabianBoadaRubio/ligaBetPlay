@@ -52,9 +52,6 @@ import { partido } from './js/modules/partido.js';
 // console.log(await objInforme.getAllTest());
 // objInforme.destructor();
 
-// let objEstadio = new estadio();
-// console.log(await objEstadio.getAllTest());
-// objEstadio.destructor();
 
 // let objPermiso = new permiso();
 // console.log(await objPermiso.getAllTest());
@@ -259,9 +256,19 @@ async function caso8() {
         objArbitroGestion.destructor();
     }
 }
-caso8().catch(console.error);
+// caso8().catch(console.error);
 
 /*---------------------------------------------------------------- FIN CASO DE USO 8 -----------------------------------------------------------------*/
+
+
+/*---------------------------------------------------------------- CASO DE USO 9 -----------------------------------------------------------------*/
+
+let objEstadio = new estadio();
+console.log(await objEstadio.getAllTest());
+objEstadio.destructor();
+
+
+/*---------------------------------------------------------------- FIN CASO DE USO 9 -----------------------------------------------------------------*/
 
 
 // let objTemporada = new temporada();
