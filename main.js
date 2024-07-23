@@ -74,9 +74,6 @@ import { partido } from './js/modules/partido.js';
 // objPremio.destructor();
 
 
-// let objPatrocinador = new patrocinador();
-// console.log(await objPatrocinador.getAllTest());
-// objPatrocinador.destructor();
 
 // let objGol = new gol();
 // console.log(await objGol.getAllTest());
@@ -296,6 +293,15 @@ caso9().catch(console.error);
 
 
 /*---------------------------------------------------------------- FIN CASO DE USO 9 -----------------------------------------------------------------*/
+
+/*---------------------------------------------------------------- CASO DE USO 11 -----------------------------------------------------------------*/
+
+let objPatrocinador = new patrocinador();
+console.log(await objPatrocinador.getAllTest());
+objPatrocinador.destructor();
+
+/*---------------------------------------------------------------- CASO DE USO 11 -----------------------------------------------------------------*/
+
 
 
 // let objTemporada = new temporada();

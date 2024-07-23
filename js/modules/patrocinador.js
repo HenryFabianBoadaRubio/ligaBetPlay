@@ -17,10 +17,4 @@ export class patrocinador extends connect {
         patrocinador.instancePatrocinador = undefined;
         connect.instanceConnect = undefined;
     }
-    async getAllTest() {
-        await this.conexion.connect();
-        const res = await this.collection.find({}).toArray(); 
-        await this.conexion.close();
-        return res;
-    }
 }
